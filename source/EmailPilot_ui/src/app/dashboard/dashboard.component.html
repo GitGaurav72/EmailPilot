@@ -1,0 +1,77 @@
+<div class="dashboard-container">
+    <!-- Header -->
+    <header class="header">
+      <h2>Email Scheduler Dashboard</h2>
+      <div class="header-actions">
+        <button class="action-button" routerLink="/emailGroup">
+          <i class="fas fa-users"></i> Create Group
+        </button>
+        <button class="action-button" routerLink="/composeEmail">
+          <i class="fas fa-file-alt"></i> Create Template
+        </button>
+      </div>
+    </header>
+  
+    <!-- Schedule New Email Section -->
+    <div class="schedule-section">
+      <h3>Schedule New Email</h3>
+      <form (ngSubmit)="scheduleEmail()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="emailGroup">Select Email Group</label>
+            <select id="emailGroup" [(ngModel)]="selectedGroup" name="emailGroup" required>
+              <option *ngFor="let group of emailGroups" [value]="group.id">{{ group.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="emailTemplate">Select Email Template</label>
+            <select id="emailTemplate" [(ngModel)]="selectedTemplate" name="emailTemplate" required>
+              <option *ngFor="let template of emailTemplates" [value]="template.id">{{ template.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="scheduleTime">Scheduled Time</label>
+            <input type="datetime-local" id="scheduleTime" [(ngModel)]="scheduledTime" name="scheduleTime" required>
+          </div>
+          <div class="form-group">
+            <label for="timezone">Timezone</label>
+            <select id="timezone" [(ngModel)]="timezone" name="timezone" required>
+              <option value="UTC">UTC</option>
+              <option value="IST">IST</option>
+              <option value="EST">EST</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="action-button primary">
+          <i class="fas fa-calendar-plus"></i> Schedule Email
+        </button>
+      </form>
+    </div>
+  
+    <!-- Scheduled Emails List -->
+    <div class="scheduled-list">
+      <h3>Scheduled Emails</h3>
+      <div class="grid-container">
+        <div *ngFor="let scheduled of scheduledEmails" class="scheduled-card">
+          <div class="card-header">
+            <span class="status-indicator" [ngClass]="scheduled.status.toLowerCase()"></span>
+            <h4>{{ getGroupName(scheduled.groupId) }}</h4>
+            <div class="card-actions">
+              <button class="icon-button" (click)="editSchedule(scheduled)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="icon-button delete" (click)="deleteSchedule(scheduled.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-details">
+            <p><strong>Template:</strong> {{ getTemplateName(scheduled.templateId) }}</p>
+            <p><strong>Scheduled At:</strong> {{ scheduled.datetime | date:'medium' }} ({{ scheduled.timezone }})</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

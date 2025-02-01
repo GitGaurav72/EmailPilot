@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+/* Custom Scrollbar */
+
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #1a73e8;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1557b0;
+  }
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a.active {
+    font-weight: bold;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

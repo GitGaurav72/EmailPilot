@@ -1,0 +1,95 @@
+<div class="compose-email-container">
+    <!-- Header -->
+    <header class="header">
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+      <h2>Compose Email</h2>
+    </header>
+  
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Recipient Section -->
+      <div class="recipient-section">
+        <div class="form-group">
+          <label for="to">To</label>
+          <input
+            type="text"
+            id="to"
+            [(ngModel)]="to"
+            placeholder="Enter recipient email"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let email of filteredEmails | async" [value]="email">
+              {{ email }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+        <div class="button-group">
+          <button class="action-button" (click)="addCcBcc()">
+            <i class="fas fa-user-plus"></i> Add CC/BCC
+          </button>
+          <button class="action-button" (click)="uploadCsv()">
+            <i class="fas fa-upload"></i> Upload CSV
+          </button>
+        </div>
+      </div>
+  
+      <!-- Email Details -->
+      <div class="email-details">
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" [(ngModel)]="subject" placeholder="Enter subject" />
+        </div>
+        <div class="form-group">
+          <label for="body">Body</label>
+          <!-- <quill-editor
+            id="body"
+            [(ngModel)]="body"
+             [modules]="editorModules" 
+            placeholder="Compose your email..."
+          ></quill-editor> -->
+        </div>
+        <div class="form-group">
+          <button class="action-button" (click)="insertTemplate()">
+            <i class="fas fa-file-alt"></i> Insert Template
+          </button>
+        </div>
+      </div>
+  
+      <!-- Scheduling Section -->
+      <div class="scheduling-section">
+        <div class="form-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="scheduleEmail" /> Schedule Email
+          </label>
+        </div>
+        <div *ngIf="scheduleEmail" class="form-group">
+          <label for="datetime">Date & Time</label>
+          <input type="datetime-local" id="datetime" [(ngModel)]="scheduledDateTime" />
+        </div>
+        <div *ngIf="scheduleEmail" class="form-group">
+          <label for="timezone">Timezone</label>
+          <select id="timezone" [(ngModel)]="timezone">
+            <option value="UTC">UTC</option>
+            <option value="IST">IST</option>
+            <option value="PST">PST</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Actions -->
+      <div class="actions">
+        <button class="action-button" (click)="saveAsDraft()">
+          <i class="fas fa-save"></i> Save as Draft
+        </button>
+        <button class="action-button" (click)="scheduleEmailAction()" [disabled]="!scheduleEmail">
+          <i class="fas fa-calendar-alt"></i> Schedule Email
+        </button>
+        <button class="action-button primary" (click)="sendNow()">
+          <i class="fas fa-paper-plane"></i> Send Now
+        </button>
+      </div>
+    </main>
+  </div>

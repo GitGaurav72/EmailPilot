@@ -1,0 +1,63 @@
+<div class="home-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">EmailPilot</div>
+      <nav class="nav">
+        <a routerLink="/" class="nav-link active">Home</a>
+        <a routerLink="/scheduled-emails" class="nav-link">Scheduled Emails</a>
+        <a routerLink="/templates" class="nav-link">Templates</a>
+        <a routerLink="/analytics" class="nav-link">Analytics</a>
+        <a routerLink="/settings" class="nav-link">Settings</a>
+        <a routerLink="/login" class="nav-link">Login</a>
+      </nav>
+      <div class="user-profile">
+        <span class="user-initials">JD</span>
+        <div class="dropdown">
+          <a routerLink="/profile">Profile</a>
+          <a routerLink="/logout">Logout</a>
+        </div>
+      </div>
+    </header>
+  
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Welcome to EmailPilot</h1>
+        <p>Your ultimate solution for scheduling and managing emails effortlessly.</p>
+        <div class="hero-actions">
+          <button class="hero-button" (click)="composeEmail()">Compose New Email</button>
+          <button class="hero-button outline" (click)="viewScheduledEmails()">View Scheduled Emails</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/images/slide1.jpg" style="height: 200px;" alt="Email Illustration">
+      </div>
+    </section>
+  
+    <!-- Features Section -->
+    <section class="features-section">
+      <h2>Why Choose EmailPilot?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-clock"></i>
+          <h3>Schedule Emails</h3>
+          <p>Send emails at the perfect time with our advanced scheduling system.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-envelope-open"></i>
+          <h3>Track Performance</h3>
+          <p>Monitor open rates, click rates, and more with detailed analytics.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-file-alt"></i>
+          <h3>Email Templates</h3>
+          <p>Use pre-designed templates to save time and maintain consistency.</p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2023 EmailPilot. All rights reserved.</p>
+    </footer>
+  </div>

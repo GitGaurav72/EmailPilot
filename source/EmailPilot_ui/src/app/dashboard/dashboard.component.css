@@ -1,0 +1,137 @@
+.dashboard-container {
+    font-family: 'Roboto', sans-serif;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .action-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .action-button.primary {
+    background-color: #34a853;
+  }
+  
+  .schedule-section {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  select, input[type="datetime-local"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .scheduled-list {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .scheduled-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .status-indicator.pending {
+    background-color: #fbbc05;
+  }
+  
+  .status-indicator.sent {
+    background-color: #34a853;
+  }
+  
+  .status-indicator.failed {
+    background-color: #ea4335;
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 0.5rem;
+  }
+  
+  .icon-button.delete {
+    color: #ea4335;
+  }
+  
+  .card-details p {
+    margin: 0.5rem 0;
+    color: #666;
+  }

@@ -1,0 +1,143 @@
+.email-group-container {
+    font-family: 'Roboto', sans-serif;
+    padding: 1rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .create-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .create-button:hover {
+    opacity: 0.9;
+  }
+  
+  .groups-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .group-card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .group-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .action-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .action-button.delete {
+    background-color: #ea4335;
+  }
+  
+  .action-button:hover {
+    opacity: 0.9;
+  }
+  
+  .group-emails {
+    margin-bottom: 1rem;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+  }
+  
+  .close-button {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .email-list {
+    margin-top: 1rem;
+  }
+  
+  .email-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .remove-button {
+    background: none;
+    border: none;
+    color: #ea4335;
+    cursor: pointer;
+  }

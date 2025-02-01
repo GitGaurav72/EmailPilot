@@ -1,0 +1,95 @@
+.compose-email-container {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    height: 95%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .back-button:hover {
+    opacity: 0.8;
+  }
+  
+  h2 {
+    margin: 0;
+    margin-left: 1rem;
+    color: #333;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  input, select {
+    width: 70%;
+    padding: 0.40rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .action-button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .action-button:hover {
+    opacity: 0.9;
+  }
+  
+  .action-button.primary {
+    background-color: #34a853;
+  }
+  
+  .quill-editor {
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }

@@ -1,0 +1,79 @@
+<div class="email-group-container">
+    <!-- Header -->
+    <header class="header">
+        <button class="back-button" (click)="goBack()">
+           <i class="fas fa-arrow-left"></i> Back
+        </button>
+      <h2>Email Groups</h2>
+      <button class="create-button" (click)="openCreateGroupModal()">
+        <i class="fas fa-plus"></i> Create Group
+      </button>
+    </header>
+  
+    <!-- Email Groups List -->
+    <div class="groups-list">
+      <div *ngFor="let group of emailGroups" class="group-card">
+        <div class="group-header">
+          <h3>{{ group.name }}</h3>
+          <div class="group-actions">
+            <button class="action-button" (click)="openEditGroupModal(group)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="action-button delete" (click)="deleteGroup(group.id)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+        <div class="group-emails">
+          <p *ngFor="let email of group.emails">{{ email }}</p>
+        </div>
+        <button class="action-button" (click)="openAddEmailsModal(group)">
+          <i class="fas fa-envelope"></i> Add/Remove Emails
+        </button>
+      </div>
+    </div>
+  
+    <!-- Create/Edit Group Modal -->
+    <div *ngIf="isModalOpen" class="modal">
+      <div class="modal-content">
+        <span class="close-button" (click)="closeModal()">&times;</span>
+        <h3>{{ isEditing ? 'Edit Group' : 'Create Group' }}</h3>
+        <div class="form-group">
+          <label for="groupName">Group Name</label>
+          <input type="text" id="groupName" [(ngModel)]="groupName" placeholder="Enter group name" />
+        </div>
+        <button class="action-button" (click)="saveGroup()">
+          {{ isEditing ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </div>
+  
+    <!-- Add/Remove Emails Modal -->
+    <div *ngIf="isEmailModalOpen" class="modal">
+      <div class="modal-content">
+        <span class="close-button" (click)="closeEmailModal()">&times;</span>
+        <h3>Manage Emails</h3>
+        <div class="form-group">
+          <label for="emailInput">Add Email</label>
+          <input
+            type="text"
+            id="emailInput"
+            [(ngModel)]="newEmail"
+            placeholder="Enter email"
+            (keyup.enter)="addEmail()"
+          />
+          <button class="action-button" (click)="addEmail()">
+            <i class="fas fa-plus"></i> Add
+          </button>
+        </div>
+        <div class="email-list">
+          <p *ngFor="let email of selectedGroup.emails" class="email-item">
+            {{ email }}
+            <button class="remove-button" (click)="removeEmail(email)">
+              <i class="fas fa-times"></i>
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
