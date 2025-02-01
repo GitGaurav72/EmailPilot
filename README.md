@@ -1,8 +1,53 @@
 # EmailPilot
 EmailPilot is a web app for scheduling and managing emails. Users can create email groups, use templates, and schedule emails with specific dates and times. The dashboard displays scheduled emails with status indicators (Pending, Sent, Failed). Built with Angular, it features a rich text editor, responsive design, and intuitive UI
+------------------------------------------------------------------------------------------------------------------------------------------
+# Key Features
 
+Email Group Management:
 
+    Create, update, and delete email groups.
 
+    Add or remove multiple emails to/from a group.
+
+Email Templates:
+
+    Create and manage reusable email templates.
+
+    Use templates for quick email composition.
+
+Email Scheduling:
+
+    Schedule emails with specific date, time, and timezone.
+
+    View and manage scheduled emails in a dashboard.
+
+Rich Text Editor:
+
+    Compose emails with a rich text editor (supports bold, italics, links, etc.).
+
+Dashboard:
+
+    View all scheduled emails with status indicators (Pending, Sent, Failed).
+
+    Edit or delete scheduled emails.
+
+User-Friendly Interface:
+
+    Intuitive and responsive design for seamless user experience.
+------------------------------------------------------------------------------------------------------------------------------------------
+
+# Technologies Used
+
+Frontend: Angular, TypeScript, HTML, CSS
+
+UI Components: Angular Material, FontAwesome Icons
+
+Rich Text Editor: ngx-quill
+
+Routing: Angular Router
+
+State Management: Angular Services
+------------------------------------------------------------------------------------------------------------------------------------------
 1. Home:
 
 ![image](https://github.com/user-attachments/assets/11003392-7a26-4597-92c7-84cb4adaa431)
