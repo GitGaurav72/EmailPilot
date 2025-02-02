@@ -1,16 +1,18 @@
 .compose-email-container {
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff;
     padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* background-color: #ffffff;
     border-radius: 8px;
     height: 95%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   }
   
   .header {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
   
   .back-button {
@@ -19,6 +21,13 @@
     color: #1a73e8;
     cursor: pointer;
     font-size: 1rem;
+  }
+  .main-content{
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
   }
   
   .back-button:hover {
@@ -92,4 +101,9 @@
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+  }
+  .mat-typography {
+    margin: 0 auto;
+    font: 400 14px / 20px Roboto, sans-serif;
+    letter-spacing: .0178571429em;
   }

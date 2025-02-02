@@ -8,21 +8,30 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComposeEmailComponent } from './compose-email/compose-email.component';
 import { EmailGroupComponent } from './email-group/email-group.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { TemplatesComponent } from './templates/templates.component';
+
 
 export const routes: Routes = [
 
+    
     { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent }, // Login page
     { path: 'register', component: SigninComponent }, // Register page
     { path: 'composeEmail', component: ComposeEmailComponent},
     { path: 'emailGroup', component: EmailGroupComponent},
     { path: 'mailShedularDashboard', component: DashboardComponent},
+    { path: 'analytics', component: AnalyticsComponent},
+    { path: 'template', component: TemplatesComponent},
     { path: '**', redirectTo: '' } 
+
     
 ];
 @NgModule({
-    imports: [CommonModule, RouterModule.forRoot(routes)], // Use RouterModule.forRoot for the root module
+    imports: [CommonModule, RouterModule.forRoot(routes, { useHash: true })], // Use RouterModule.forRoot for the root module
     exports: [RouterModule] // Export RouterModule to make the router directives available
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+}
 

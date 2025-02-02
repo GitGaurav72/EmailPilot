@@ -1,9 +1,13 @@
 package com.novaedge.project.emailPilot.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Table(name = "TB_Nova_EmailPilot_User")
 @Entity
@@ -30,6 +34,14 @@ public class TBNovaEmailPilotUserEntity {
 	
 	@Column(name= "PASSWORD")
 	public String password;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "CRT_TS")
+	public LocalDateTime crtAt;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "UPDT_TS")
+	public LocalDateTime updtdBy;
 	
 	public String getId() {
 		return id;
@@ -88,12 +100,30 @@ public class TBNovaEmailPilotUserEntity {
 		this.password = password;
 	}
 
+	
+	public LocalDateTime getCrtAt() {
+		return crtAt;
+	}
+
+	public void setCrtAt(LocalDateTime crtAt) {
+		this.crtAt = crtAt;
+	}
+
+	public LocalDateTime getUpdtdBy() {
+		return updtdBy;
+	}
+
+	public void setUpdtdBy(LocalDateTime updtdBy) {
+		this.updtdBy = updtdBy;
+	}
+
 	public TBNovaEmailPilotUserEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TBNovaEmailPilotUserEntity(String id, String userName, String firstName, String lastName, String about, String email, String password) {
+	public TBNovaEmailPilotUserEntity(String id, String userName, String firstName, String lastName, String about,
+			String email, String password, LocalDateTime crtAt, LocalDateTime updtdBy) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -102,13 +132,18 @@ public class TBNovaEmailPilotUserEntity {
 		this.about = about;
 		this.email = email;
 		this.password = password;
+		this.crtAt = crtAt;
+		this.updtdBy = updtdBy;
 	}
 
 	@Override
 	public String toString() {
-		return "TBNovaEmailPilotUserEntity [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", about=" + about + ", email=" + email + ", password=" + password + "]";
+		return "TBNovaEmailPilotUserEntity [id=" + id + ", userName=" + userName + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", about=" + about + ", email=" + email + ", password=" + password
+				+ ", crtAt=" + crtAt + ", updtdBy=" + updtdBy + "]";
 	}
+
+	
 	
 	
 }

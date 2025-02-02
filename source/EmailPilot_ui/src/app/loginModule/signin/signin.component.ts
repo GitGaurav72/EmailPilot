@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { RegisterCredentials, User, ApiResponse } from '../../interfaces';
+import { AuthService, } from '../../authService';
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -11,20 +12,36 @@ import { FormsModule } from '@angular/forms';
 })
 export class SigninComponent {
 
-    lname: string = '';
-    fname: string = '';
-    uname: string = '';
-    email: string = '';
-    password: string = '';
+     Credentials : RegisterCredentials = {
+       firstName : '',
+       lastName : '',
+       userName : '',
+       email : '',
+       password : '',
+
+     };
+     
   
-    constructor(private router: Router) {}
+    constructor(private router: Router, private authService : AuthService) {}
   
     onRegister() {
-      // Add your registration logic here
-      console.log('Name:', this.fname);
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+      console.log('Name:', this.Credentials.firstName);
+      console.log('Email:', this.Credentials.lastName);
+      console.log('Password:', this.Credentials.password);
   
+       this.authService.register(this.Credentials).subscribe({
+            next: (response: ApiResponse<User>) => {
+              if (response.success) {
+                console.log('Login successful!', response.data);
+                this.router.navigate(['/mailShedularDashboard']);
+              } else {
+                console.error('Login failed:', response.message);
+              }
+            },
+            error: (error) => {
+              console.error('Error during login:', error);
+            },
+          });
       // For now, navigate to the login page
       this.router.navigate(['/login']);
     }

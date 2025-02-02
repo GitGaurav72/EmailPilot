@@ -44,12 +44,14 @@
         </div>
         <div class="form-group">
           <label for="body">Body</label>
-          <!-- <quill-editor
+           <quill-editor
+           [style]="{'height':'300px', 'width':'100%'}"
             id="body"
             [(ngModel)]="body"
              [modules]="editorModules" 
             placeholder="Compose your email..."
-          ></quill-editor> -->
+            
+          ></quill-editor> 
         </div>
         <div class="form-group">
           <button class="action-button" (click)="insertTemplate()">

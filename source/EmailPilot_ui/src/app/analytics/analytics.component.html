@@ -1,0 +1,46 @@
+<div class="analytics-container">
+    <h2>Email Analytics</h2>
+  
+    <!-- Metrics Overview -->
+    <div class="metrics-overview">
+      <div class="metric-card">
+        <h3>Open Rate</h3>
+        <p>{{ openRate }}%</p>
+      </div>
+      <div class="metric-card">
+        <h3>Click Rate</h3>
+        <p>{{ clickRate }}%</p>
+      </div>
+      <div class="metric-card">
+        <h3>Bounce Rate</h3>
+        <p>{{ bounceRate }}%</p>
+      </div>
+      <div class="metric-card">
+        <h3>Unsubscribe Rate</h3>
+        <p>{{ unsubscribeRate }}%</p>
+      </div>
+    </div>
+  
+    <!-- Email Activity Over Time -->
+    <div class="chart-section">
+      <h3>Email Activity Over Time</h3>
+      <canvas id="emailActivityChart"></canvas>
+    </div>
+  
+    <!-- Top Recipients -->
+    <div class="top-recipients">
+      <h3>Top Recipients</h3>
+      <ul>
+        <li *ngFor="let recipient of topRecipients">
+          {{ recipient.email }} - {{ recipient.engagement }}% Engagement
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Export Data -->
+    <div class="export-section">
+      <button class="export-button" (click)="exportData()">
+        <i class="fas fa-download"></i> Export Data
+      </button>
+    </div>
+  </div>

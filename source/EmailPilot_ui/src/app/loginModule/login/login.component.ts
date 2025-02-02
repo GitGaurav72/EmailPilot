@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { LoginCredentials, ApiResponse,LoginReposne } from '../../interfaces';
+import { AuthService } from '../../authService';
 
 
 @Component({
@@ -11,17 +13,30 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
 
-  constructor(private router: Router) {}
+  credentials: LoginCredentials = {
+    usernameOrEmail: '',
+    password: '',
+  };
+
+  constructor(private router: Router, private authService: AuthService) {}
 
   onLogin() {
-    // Add your login logic here
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-
-    // For now, navigate to the home page
-    this.router.navigate(['/mailShedularDashboard']);
+    console.log('Username/Email:', this.credentials.usernameOrEmail);
+    console.log('Password:', this.credentials.password);
+    this.authService.login(this.credentials).subscribe({
+      next: (response: ApiResponse<LoginReposne>) => {
+        if (response.success) {
+          console.log('Login successful!', response.data);
+          this.router.navigate(['/mailShedularDashboard']);
+        } else {
+          console.error('Login failed:', response.message);
+        }
+      },
+      error: (error) => {
+        console.error('Error during login:', error);
+      },
+    });
   }
 }
+

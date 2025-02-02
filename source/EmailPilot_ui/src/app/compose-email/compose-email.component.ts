@@ -6,12 +6,13 @@ import { startWith, map } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule, NgIf } from '@angular/common';
+import { QuillModule } from 'ngx-quill';
 
 
 @Component({
   selector: 'app-compose-email',
   standalone: true,
-  imports: [FormsModule, MatAutocompleteModule, CommonModule],
+  imports: [FormsModule, MatAutocompleteModule, CommonModule, QuillModule],
   templateUrl: './compose-email.component.html',
   styleUrl: './compose-email.component.css'
   

@@ -20,8 +20,13 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@tinymce/tinymce-angular": "^8.0.1",
+    "chart.js": "^4.4.7",
+    "ngx-quill": "^27.0.0",
+    "quill": "^2.0.3",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.1",
+    "tinymce": "^7.6.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
