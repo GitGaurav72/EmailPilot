@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RegisterCredentials, User, ApiResponse } from '../../interfaces';
-import { AuthService, } from '../../authService';
+import { AuthService, } from '../../services/authService';
 @Component({
   selector: 'app-signin',
   standalone: true,

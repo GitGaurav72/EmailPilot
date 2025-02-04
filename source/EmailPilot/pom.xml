@@ -52,6 +52,14 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>jakarta.platform</groupId>
+			<artifactId>jakarta.jakartaee-api</artifactId>
+			<version>10.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
 		<!-- Database Driver -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
@@ -60,7 +68,7 @@
 		</dependency>
 
 		<!-- JWT Dependency -->
-<!--		<dependency>
+		<!--		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>

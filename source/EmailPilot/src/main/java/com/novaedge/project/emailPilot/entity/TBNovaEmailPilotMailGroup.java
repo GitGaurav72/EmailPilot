@@ -1,16 +1,21 @@
 package com.novaedge.project.emailPilot.entity;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "TB_Nova_EmailPilot_MailGroup")
@@ -24,19 +29,17 @@ public class TBNovaEmailPilotMailGroup {
 
     @Column(name = "aded_usr")
     private String adedUsr;
-
-    @Column(name = "shdl_tm")
-    private String shdlTm;
-
-    @Column(name = "mail_cntnt")
-    private String mailCntnt;
+    
+    @ManyToMany
+    @JoinTable(name = "TB_Nova_EmailPilot_Group_Mail_Mapping", joinColumns = @JoinColumn (name = "m_grp_id"), inverseJoinColumns = @JoinColumn(name = "m_id"))
+    private Set<TBNovaEmailPilotMailId> mailIds = new HashSet<>();
 
     @Column(name = "add_ts")
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private LocalDateTime addTs;
 
     @Column(name = "updt_ts")
-    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private LocalDateTime updtTs;
 
     // Getters and Setters
@@ -65,23 +68,6 @@ public class TBNovaEmailPilotMailGroup {
     public void setAdedUsr(String adedUsr) {
         this.adedUsr = adedUsr;
     }
-
-    public String getShdlTm() {
-        return shdlTm;
-    }
-
-    public void setShdlTm(String shdlTm) {
-        this.shdlTm = shdlTm;
-    }
-
-    public String getMailCntnt() {
-        return mailCntnt;
-    }
-
-    public void setMailCntnt(String mailCntnt) {
-        this.mailCntnt = mailCntnt;
-    }
-
     public LocalDateTime getAddTs() {
         return addTs;
     }
@@ -97,4 +83,38 @@ public class TBNovaEmailPilotMailGroup {
     public void setUpdtTs(LocalDateTime updtTs) {
         this.updtTs = updtTs;
     }
+    
+    public Set<TBNovaEmailPilotMailId> getMailIds() {
+        return mailIds;
+    }
+
+    public void setMailIds(Set<TBNovaEmailPilotMailId> mailIds) {
+        this.mailIds = mailIds;
+    }
+
+	public TBNovaEmailPilotMailGroup(String mGrpId, String mGrpNm, String adedUsr, Set<TBNovaEmailPilotMailId> mailIds,
+			LocalDateTime addTs, LocalDateTime updtTs) {
+		super();
+		this.mGrpId = mGrpId;
+		this.mGrpNm = mGrpNm;
+		this.adedUsr = adedUsr;
+		this.mailIds = mailIds;
+		this.addTs = addTs;
+		this.updtTs = updtTs;
+	}
+
+	public TBNovaEmailPilotMailGroup() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+	public void addMailId(TBNovaEmailPilotMailId mailId) {
+	    mailIds.add(mailId);
+	    mailId.getMailGroups().add(this);
+	}
+
+	public void removeMailId(TBNovaEmailPilotMailId mailId) {
+	    mailIds.remove(mailId);
+	    mailId.getMailGroups().remove(this);
+	}
 }

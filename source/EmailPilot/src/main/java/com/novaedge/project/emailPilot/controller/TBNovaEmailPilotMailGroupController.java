@@ -39,8 +39,6 @@ public class TBNovaEmailPilotMailGroupController {
             updatedMailGroup.setmGrpId(mailGroupDetails.getmGrpId());
             updatedMailGroup.setmGrpNm(mailGroupDetails.getmGrpNm());
             updatedMailGroup.setAdedUsr(mailGroupDetails.getAdedUsr());
-            updatedMailGroup.setShdlTm(mailGroupDetails.getShdlTm());
-            updatedMailGroup.setMailCntnt(mailGroupDetails.getMailCntnt());
             updatedMailGroup.setAddTs(mailGroupDetails.getAddTs());
             updatedMailGroup.setUpdtTs(mailGroupDetails.getUpdtTs());
             return ResponseEntity.ok(service.saveMailGroup(updatedMailGroup));

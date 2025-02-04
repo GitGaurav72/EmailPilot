@@ -19,13 +19,26 @@ public class TBNovaEmailPilotMailIdController {
     public List<TBNovaEmailPilotMailId> getAllMailIds() {
         return service.getAllMailIds();
     }
+    
 
     @GetMapping("/{id}")
     public ResponseEntity<TBNovaEmailPilotMailId> getMailIdById(@PathVariable String id) {
         Optional<TBNovaEmailPilotMailId> mailId = service.getMailIdById(id);
         return mailId.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/usr/{usrId}")
+    public ResponseEntity<List<TBNovaEmailPilotMailId>> getMailIdByuserId(@PathVariable String usrId) {
+    	List<TBNovaEmailPilotMailId> mailId = service.getMailIdByUserId(usrId);
 
+    	if (mailId.isEmpty()) {
+    	    return ResponseEntity.notFound().build();
+    	}
+
+    	return ResponseEntity.ok(mailId);
+
+    }
+  
     @PostMapping
     public TBNovaEmailPilotMailId createMailId(@RequestBody TBNovaEmailPilotMailId mailId) throws Exception {
         return service.saveMailId(mailId);
@@ -41,7 +54,6 @@ public class TBNovaEmailPilotMailIdController {
             updatedMailId.setHrName(mailIdDetails.getHrName());
             updatedMailId.setCmpnyNm(mailIdDetails.getCmpnyNm());
             updatedMailId.setAddByUser(mailIdDetails.getAddByUser());
-            updatedMailId.setAddTogroup(mailIdDetails.getAddTogroup());
             updatedMailId.setAddTs(mailIdDetails.getAddTs());
             updatedMailId.setUpdtTs(mailIdDetails.getUpdtTs());
             return ResponseEntity.ok(service.saveMailId(updatedMailId));

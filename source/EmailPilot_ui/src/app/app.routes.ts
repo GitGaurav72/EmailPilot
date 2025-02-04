@@ -10,6 +10,8 @@ import { EmailGroupComponent } from './email-group/email-group.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { TemplatesComponent } from './templates/templates.component';
+import { AddEmailComponent } from './add-email/add-email.component';
+import { EmailListComponent } from './email-list/email-list.component';
 
 
 export const routes: Routes = [
@@ -23,6 +25,8 @@ export const routes: Routes = [
     { path: 'mailShedularDashboard', component: DashboardComponent},
     { path: 'analytics', component: AnalyticsComponent},
     { path: 'template', component: TemplatesComponent},
+    { path: 'email/add', component :  AddEmailComponent},
+    {path : 'emailList/:usrid', component :  EmailListComponent},
     { path: '**', redirectTo: '' } 
 
     

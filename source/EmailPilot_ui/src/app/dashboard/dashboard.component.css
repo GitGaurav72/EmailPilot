@@ -59,15 +59,15 @@
     font-weight: bold;
     color: #555;
   }
-  
-  select, input[type="datetime-local"] {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+  select, 
+  input[type="datetime-local"], 
+  input[type="time"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
   }
-  
   .scheduled-list {
     background-color: #ffffff;
     padding: 2rem;
@@ -134,4 +134,20 @@
   .card-details p {
     margin: 0.5rem 0;
     color: #666;
+  }
+
+  .daily-checkbox {
+    margin-bottom: 1rem;
+  }
+  
+  .daily-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .daily-checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
   }

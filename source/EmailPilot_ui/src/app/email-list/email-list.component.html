@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="header">
+      <button mat-button color="primary" routerLink="/email/add">➕ Add New Email</button>
+      <input type="file" (change)="onFileUpload($event, 'excel')" accept=".xlsx, .xls" hidden #excelUpload />
+      <button mat-button color="accent" (click)="excelUpload.click()">📂 Upload Excel</button>
+      
+      <input type="file" (change)="onFileUpload($event, 'pdf')" accept=".pdf" hidden #pdfUpload />
+      <button mat-button color="warn" (click)="pdfUpload.click()">📄 Upload PDF</button>
+    </div>
+  
+    <table mat-table [dataSource]="emails" class="mat-elevation-z8">
+      <ng-container matColumnDef="emailId">
+        <th mat-header-cell *matHeaderCellDef> Email ID </th>
+        <td mat-cell *matCellDef="let email"> {{ email.mId }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let email"> {{ email.mailId }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="hr">
+        <th mat-header-cell *matHeaderCellDef> HR </th>
+        <td mat-cell *matCellDef="let email"> {{ email.hrName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="companyName">
+        <th mat-header-cell *matHeaderCellDef> Company Name </th>
+        <td mat-cell *matCellDef="let email"> {{ email.cmpnyNm }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let email"> {{ email.addTs | date:'short' }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> Updated At </th>
+        <td mat-cell *matCellDef="let email"> {{ email.updtTs | date:'short' }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt'];"></tr>
+    </table>
+  
+    <mat-paginator [length]="totalEmails" [pageSize]="itemsPerPage" (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+  

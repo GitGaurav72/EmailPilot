@@ -3,6 +3,9 @@
     <header class="header">
       <h2>Email Scheduler Dashboard</h2>
       <div class="header-actions">
+        <button class="action-button" routerLink="/emailList/{{userId}}">
+          <i class="fas fa-users"></i> EmailId
+        </button>
         <button class="action-button" routerLink="/emailGroup">
           <i class="fas fa-users"></i> Create Group
         </button>
@@ -16,6 +19,11 @@
     <div class="schedule-section">
       <h3>Schedule New Email</h3>
       <form (ngSubmit)="scheduleEmail()">
+        <div class="form-group daily-checkbox">
+          <label>
+            <input type="checkbox" [(ngModel)]="isDaily" name="isDaily"> Send Mail Daily
+          </label>
+        </div>
         <div class="form-row">
           <div class="form-group">
             <label for="emailGroup">Select Email Group</label>
@@ -31,10 +39,19 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="scheduleTime">Scheduled Time</label>
-            <input type="datetime-local" id="scheduleTime" [(ngModel)]="scheduledTime" name="scheduleTime" required>
-          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <!-- Modified Date/Time Picker -->
+              <label for="scheduleTime" *ngIf="!isDaily">Scheduled Date & Time</label>
+              <label for="dailyTime" *ngIf="isDaily">Daily Time</label>
+              
+              <input *ngIf="!isDaily" type="datetime-local" id="scheduleTime" 
+                     [(ngModel)]="scheduledTime" name="scheduleTime" required>
+              
+              <input *ngIf="isDaily" type="time" id="dailyTime" 
+                     [(ngModel)]="dailyTime" name="dailyTime" required>
+            </div>
+            </div>
           <div class="form-group">
             <label for="timezone">Timezone</label>
             <select id="timezone" [(ngModel)]="timezone" name="timezone" required>

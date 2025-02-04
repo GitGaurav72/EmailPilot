@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LoginCredentials, ApiResponse,LoginReposne } from '../../interfaces';
-import { AuthService } from '../../authService';
+import { AuthService } from '../../services/authService';
 
 
 @Component({
@@ -28,6 +28,8 @@ export class LoginComponent {
       next: (response: ApiResponse<LoginReposne>) => {
         if (response.success) {
           console.log('Login successful!', response.data);
+          localStorage.setItem('authToken', response.data?.token || '');
+          localStorage.setItem('userId', response.data?.id || ''); // Store token
           this.router.navigate(['/mailShedularDashboard']);
         } else {
           console.error('Login failed:', response.message);

@@ -3,15 +3,16 @@ package com.novaedge.project.emailPilot.entity;
 
 
 import java.time.LocalDateTime;
-
+import java.util.HashSet;
+import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotMailGroup;
 
 @Entity
 @Table(name = "TB_Nova_EmailPilot_MailId")
@@ -33,9 +34,9 @@ public class TBNovaEmailPilotMailId {
 
     @Column(name = "add_by_user")
     private String addByUser;
-
-    @Column(name = "add_to_group")
-    private String addTogroup;
+    
+    @ManyToMany(mappedBy = "mailIds")
+    private Set<TBNovaEmailPilotMailGroup> mailGroups = new HashSet<>();
 
     @Column(name = "add_ts")
     @Temporal(TemporalType.TIMESTAMP)
@@ -46,7 +47,7 @@ public class TBNovaEmailPilotMailId {
     private LocalDateTime updtTs;
 
     // Getters and Setters
-
+ 
 
     public String getmId() {
         return mId;
@@ -88,14 +89,6 @@ public class TBNovaEmailPilotMailId {
         this.addByUser = addByUser;
     }
 
-    public String getAddTogroup() {
-        return addTogroup;
-    }
-
-    public void setAddTogroup(String addTogroup) {
-        this.addTogroup = addTogroup;
-    }
-
     public LocalDateTime getAddTs() {
         return addTs;
     }
@@ -111,4 +104,34 @@ public class TBNovaEmailPilotMailId {
     public void setUpdtTs(LocalDateTime updtTs) {
         this.updtTs = updtTs;
     }
+    
+
+    // Add getters and setters for mailGroups
+    public Set<TBNovaEmailPilotMailGroup> getMailGroups() {
+        return mailGroups;
+    }
+
+    public void setMailGroups(Set<TBNovaEmailPilotMailGroup> mailGroups) {
+        this.mailGroups = mailGroups;
+    }
+
+	public TBNovaEmailPilotMailId(String mId, String mailId, String hrName, String cmpnyNm, String addByUser,
+			Set<TBNovaEmailPilotMailGroup> mailGroups, LocalDateTime addTs, LocalDateTime updtTs) {
+		super();
+		this.mId = mId;
+		this.mailId = mailId;
+		this.hrName = hrName;
+		this.cmpnyNm = cmpnyNm;
+		this.addByUser = addByUser;
+		this.mailGroups = mailGroups;
+		this.addTs = addTs;
+		this.updtTs = updtTs;
+	}
+
+	public TBNovaEmailPilotMailId() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
+    
 }

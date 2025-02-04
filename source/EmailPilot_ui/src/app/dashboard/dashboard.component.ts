@@ -22,6 +22,7 @@ interface ScheduledEmail {
   status: 'Pending' | 'Sent' | 'Failed';
 }
 
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -30,7 +31,14 @@ interface ScheduledEmail {
   styleUrl: './dashboard.component.css'
 })
 
+
+
 export class DashboardComponent {
+    // Add these new properties
+    isDaily: boolean = false;
+    dailyTime: string = '';
+    
+    userId: string | null = localStorage.getItem('userId'); // ✅ Declare userId as a class property
   emailGroups: EmailGroup[] = [
     { id: 1, name: 'Marketing Team' },
     { id: 2, name: 'Support Team' }
@@ -66,16 +74,33 @@ export class DashboardComponent {
   }
 
   scheduleEmail() {
-    if (this.selectedGroup && this.selectedTemplate && this.scheduledTime) {
-      const newSchedule: ScheduledEmail = {
-        id: Date.now(),
-        groupId: this.selectedGroup,
-        templateId: this.selectedTemplate,
-        datetime: this.scheduledTime,
-        timezone: this.timezone,
-        status: 'Pending'
-      };
-      this.scheduledEmails.push(newSchedule);
+    if (this.selectedGroup && this.selectedTemplate) {
+      // Handle daily schedule
+      if (this.isDaily && this.dailyTime) {
+        // Create daily schedule logic here
+        const newSchedule: ScheduledEmail = {
+          id: Date.now(),
+          groupId: this.selectedGroup,
+          templateId: this.selectedTemplate,
+          datetime: this.dailyTime, // Or format as needed
+          timezone: this.timezone,
+          status: 'Pending'
+        };
+        this.scheduledEmails.push(newSchedule);
+      }
+      // Handle normal schedule
+      else if (!this.isDaily && this.scheduledTime) {
+        const newSchedule: ScheduledEmail = {
+          id: Date.now(),
+          groupId: this.selectedGroup,
+          templateId: this.selectedTemplate,
+          datetime: this.scheduledTime,
+          timezone: this.timezone,
+          status: 'Pending'
+        };
+        this.scheduledEmails.push(newSchedule);
+      }
+      
       this.resetForm();
     }
   }
@@ -90,6 +115,8 @@ export class DashboardComponent {
   }
 
   private resetForm() {
+    this.isDaily = false;
+    this.dailyTime = '';
     this.selectedGroup = null;
     this.selectedTemplate = null;
     this.scheduledTime = '';

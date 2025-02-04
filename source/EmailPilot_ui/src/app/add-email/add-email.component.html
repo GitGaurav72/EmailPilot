@@ -1,0 +1,35 @@
+<!-- add-email.component.html -->
+<div class="container">
+    <h2>Add New Email</h2>
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email Address</mat-label>
+        <input matInput formControlName="mailId" required>
+        <mat-error *ngIf="emailForm.get('mailId')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="emailForm.get('mailId')?.hasError('email')">
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>HR Name</mat-label>
+        <input matInput formControlName="hrName" >
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="cmpnyNm" >
+      </mat-form-field>
+  
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!emailForm.valid">
+          Submit
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="router.navigate(['/email-list'])">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>

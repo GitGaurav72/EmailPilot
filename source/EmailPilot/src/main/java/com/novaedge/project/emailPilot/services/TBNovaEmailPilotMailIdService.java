@@ -32,4 +32,9 @@ public class TBNovaEmailPilotMailIdService {
     public void deleteMailId(String id) {
         repository.deleteById(id);
     }
+
+	public List<TBNovaEmailPilotMailId> getMailIdByUserId(String usrId) {
+		return repository.getByAddByUser(usrId);
+	
+	}
 }
