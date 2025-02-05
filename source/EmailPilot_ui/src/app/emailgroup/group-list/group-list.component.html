@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="header">
+      <button mat-button color="primary" (click)="openAddEmailGroupDialog()">➕ Add New Email </button>
+
+    </div>
+  
+    <table mat-table [dataSource]="emailGroup" class="mat-elevation-z8">
+      <ng-container matColumnDef="groupId">
+        <th mat-header-cell *matHeaderCellDef> Group ID </th>
+        <td mat-cell *matCellDef="let email"> {{ email.mGrpId }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="grpname">
+        <th mat-header-cell *matHeaderCellDef> Group name </th>
+        <td mat-cell *matCellDef="let email"> {{ email.mGrpNm }} </td>
+      </ng-container>
+
+  
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let email"> {{ email.addTs | date:'short' }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> Updated At </th>
+        <td mat-cell *matCellDef="let email"> {{ email.updtTs | date:'short' }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['groupId', 'grpname', 'createdAt', 'updatedAt']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['groupId', 'grpname', 'createdAt', 'updatedAt'];"></tr>
+    </table>
+  
+    <mat-paginator [length]="totalEmails" [pageSize]="itemsPerPage" (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+  

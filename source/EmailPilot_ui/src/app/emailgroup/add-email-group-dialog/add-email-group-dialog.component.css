@@ -1,0 +1,68 @@
+/* Center the dialog title */
+h2.mat-dialog-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style the dialog content */
+  mat-dialog-content {
+    padding: 1rem;
+  }
+  
+  /* Style the form fields */
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style the input fields */
+  input.mat-input-element {
+    font-size: 1rem;
+  }
+  
+  /* Style the dropdown */
+  mat-select {
+    width: 100%;
+  }
+  
+  /* Style the selected options in the dropdown */
+  mat-select-trigger {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style the dropdown options */
+  mat-option {
+    font-size: 1rem;
+  }
+  
+  /* Style the dialog actions (buttons) */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  /* Style the Cancel button */
+  button.mat-button {
+    margin-right: 0.5rem;
+  }
+  
+  /* Style the Save button */
+  button.mat-button[color="primary"] {
+    background-color: #3f51b5; /* Primary color */
+    color: white;
+  }
+  
+  /* Disabled Save button style */
+  button.mat-button[color="primary"][disabled] {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+  }
+  
+  /* Hover effect for buttons */
+  button.mat-button:hover {
+    opacity: 0.9;
+  }

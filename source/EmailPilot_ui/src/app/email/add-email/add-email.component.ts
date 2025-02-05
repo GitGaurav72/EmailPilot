@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
-import { EmailService } from '../services/emailService'
+import { EmailService } from '../../services/emailService'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
@@ -45,7 +45,7 @@ export class AddEmailComponent {
         ...this.emailForm.value,
         addTs: new Date().toISOString(),
         updtTs: new Date().toISOString(),
-        userId : this.userId
+        addByUser : this.userId
       };
       this.emailService.addEmail(newEmail).subscribe({
         next: (response) => {

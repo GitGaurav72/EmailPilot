@@ -6,12 +6,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ComposeEmailComponent } from './compose-email/compose-email.component';
-import { EmailGroupComponent } from './email-group/email-group.component';
+import { EmailGroupComponent } from './emailgroup/email-group/email-group.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { TemplatesComponent } from './templates/templates.component';
-import { AddEmailComponent } from './add-email/add-email.component';
-import { EmailListComponent } from './email-list/email-list.component';
+import { AddEmailComponent } from './email/add-email/add-email.component';
+import { EmailListComponent } from './email/email-list/email-list.component';
+import { GroupListComponent } from './emailgroup/group-list/group-list.component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
     { path: 'analytics', component: AnalyticsComponent},
     { path: 'template', component: TemplatesComponent},
     { path: 'email/add', component :  AddEmailComponent},
+    { path: 'emailGroup/:usrid', component : GroupListComponent},
     {path : 'emailList/:usrid', component :  EmailListComponent},
     { path: '**', redirectTo: '' } 
 

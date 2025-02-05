@@ -22,6 +22,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure 
     // ✅ Add AppComponent here
   ],
   imports: [
+    
     BrowserModule,
     FormsModule,
     ReactiveFormsModule, // ✅ Remove duplicate

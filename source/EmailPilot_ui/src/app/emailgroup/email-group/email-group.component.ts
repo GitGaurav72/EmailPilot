@@ -21,7 +21,7 @@ interface EmailGroup {
 export class EmailGroupComponent {
   emailGroups: EmailGroup[] = [];
   isModalOpen: boolean = false;
-  isEmailModalOpen: boolean = false;
+  isEmailModalOpen: boolean = false; 
   isEditing: boolean = false;
   groupName: string = '';
   newEmail: string = '';

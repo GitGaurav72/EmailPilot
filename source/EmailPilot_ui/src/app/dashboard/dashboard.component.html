@@ -6,8 +6,8 @@
         <button class="action-button" routerLink="/emailList/{{userId}}">
           <i class="fas fa-users"></i> EmailId
         </button>
-        <button class="action-button" routerLink="/emailGroup">
-          <i class="fas fa-users"></i> Create Group
+        <button class="action-button" routerLink="/emailGroup/{{userId}}">
+          <i class="fas fa-users"></i> Email Group
         </button>
         <button class="action-button" routerLink="/composeEmail">
           <i class="fas fa-file-alt"></i> Create Template
@@ -28,7 +28,7 @@
           <div class="form-group">
             <label for="emailGroup">Select Email Group</label>
             <select id="emailGroup" [(ngModel)]="selectedGroup" name="emailGroup" required>
-              <option *ngFor="let group of emailGroups" [value]="group.id">{{ group.name }}</option>
+              <option *ngFor="let group of emailGroups" [value]="group.mGrpId">{{ group.mGrpNm }}</option>
             </select>
           </div>
           <div class="form-group">

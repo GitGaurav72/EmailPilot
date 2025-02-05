@@ -30,4 +30,9 @@ public class TBNovaEmailPilotMailGroupService {
     public void deleteMailGroup(String id) {
         repository.deleteById(id);
     }
+
+	public List<TBNovaEmailPilotMailGroup> getMailGroupbyUserid(String usrid) {
+		
+		return repository.getByAdedUsr(usrid);
+	}
 }

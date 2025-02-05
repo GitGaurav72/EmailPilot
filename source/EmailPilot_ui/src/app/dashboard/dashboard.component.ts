@@ -2,10 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EmailGroupService } from '../services/emailGroupService';
 
 interface EmailGroup {
-  id: number;
-  name: string;
+  mGrpId: number;
+  mGrpNm: string;
+  mailIds : any;
 }
 
 interface EmailTemplate {
@@ -39,10 +41,7 @@ export class DashboardComponent {
     dailyTime: string = '';
     
     userId: string | null = localStorage.getItem('userId'); // ✅ Declare userId as a class property
-  emailGroups: EmailGroup[] = [
-    { id: 1, name: 'Marketing Team' },
-    { id: 2, name: 'Support Team' }
-  ];
+    emailGroups: EmailGroup[] = [];
 
   emailTemplates: EmailTemplate[] = [
     { id: 1, name: 'Welcome Email' },
@@ -65,8 +64,28 @@ export class DashboardComponent {
   scheduledTime: string = '';
   timezone: string = 'UTC';
 
+  constructor(
+      private emailService: EmailGroupService,
+    ) {}
+
+  ngOnInit(): void {
+    this.loadEmails();
+  }
+
+  loadEmails(): void {
+    this.emailService.getEmailGruoup(0,0).subscribe(
+      (data: any) => {
+        this.emailGroups = data.map((emailObj: any) => emailObj);
+      },
+      (error) => {
+        console.error('Error fetching emails:', error);
+        // this.snackBar.open('Failed to load emails', 'Close', { duration: 3000 });
+      }
+    );
+  }
+
   getGroupName(groupId: number): string {
-    return this.emailGroups.find(g => g.id === groupId)?.name || 'Unknown Group';
+    return this.emailGroups.find(g => g.mGrpId === groupId)?.mGrpNm || 'Unknown Group';
   }
 
   getTemplateName(templateId: number): string {

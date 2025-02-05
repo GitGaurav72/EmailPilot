@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailService } from '../services/emailService';
+import { EmailService } from '../../services/emailService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
-
+import { AesDecryptService } from '../../services/aes.service';
 
 
 
@@ -33,7 +33,7 @@ export class EmailListComponent implements OnInit {
   itemsPerPage = 30;
   totalEmails = 0;
 
-  constructor(private emailService: EmailService, private snackBar: MatSnackBar) {}
+  constructor(private emailService: EmailService, private snackBar: MatSnackBar,public aesService: AesDecryptService) {}
 
   ngOnInit(): void {
     this.loadEmails();

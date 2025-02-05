@@ -1,6 +1,7 @@
 package com.novaedge.project.emailPilot.controller;
 
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotMailGroup;
+import com.novaedge.project.emailPilot.model.ApiResponse;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotMailGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,12 @@ public class TBNovaEmailPilotMailGroupController {
     public ResponseEntity<TBNovaEmailPilotMailGroup> getMailGroupById(@PathVariable String id) {
         Optional<TBNovaEmailPilotMailGroup> mailGroup = service.getMailGroupById(id);
         return mailGroup.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    
+    @GetMapping("/usrid/{usrid}")
+    public ResponseEntity<List<TBNovaEmailPilotMailGroup>> getMailuserId(@PathVariable String usrid) {
+        List<TBNovaEmailPilotMailGroup> mailGroup = service.getMailGroupbyUserid(usrid);
+        return ResponseEntity.ok(mailGroup);
     }
 
     @PostMapping
