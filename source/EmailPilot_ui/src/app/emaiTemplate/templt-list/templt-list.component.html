@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="header">
+        <button mat-button color="primary" (click)="openAddTemplateDialog()">➕ Add New Template</button>
+
+    </div>
+  
+    <table mat-table [dataSource]="templateGrp" class="mat-elevation-z8">
+      <ng-container matColumnDef="mlCntntId">
+        <th mat-header-cell *matHeaderCellDef> Template Id </th>
+        <td mat-cell *matCellDef="let template"> {{ template.mlCntntId }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>  Title </th>
+        <td mat-cell *matCellDef="let template"> {{ template.title }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef> Subject </th>
+        <td mat-cell *matCellDef="let template"> {{ template.subject }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let template"> {{ template.addTm | date:'short' }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef> Updated At </th>
+        <td mat-cell *matCellDef="let template"> {{ template.uptTm | date:'short' }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['mlCntntId', 'title','subject' ,'createdAt', 'updatedAt']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['mlCntntId', 'title', 'subject','createdAt', 'updatedAt'];"></tr>
+    </table>
+  
+    <mat-paginator [length]="totalEmails" [pageSize]="itemsPerPage" (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+  

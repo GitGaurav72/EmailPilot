@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add New Email Template</h2>
+<mat-dialog-content>
+  <form [formGroup]="templateForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Template Title</mat-label>
+      <input matInput formControlName="title" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Subject</mat-label>
+      <input matInput formControlName="subject" required>
+    </mat-form-field>
+
+    <button mat-button type="button" (click)="toggleCcBcc()">Add CC/BCC</button>
+
+    <div *ngIf="showCcBcc">
+      <mat-form-field appearance="fill">
+        <mat-label>CC</mat-label>
+        <input matInput formControlName="cc">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>BCC</mat-label>
+        <input matInput formControlName="bcc">
+      </mat-form-field>
+    </div>
+
+        <div class="form-group">
+          <label for="body">Body</label>
+           <quill-editor
+           [style]="{'height':'200px', 'width':'100%'}"
+            id="body"
+            formControlName="body"
+             [modules]="editorModules" 
+            placeholder="Compose your email..."
+            
+          ></quill-editor> 
+        </div>    
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()" [disabled]="templateForm.invalid">Save</button>
+</mat-dialog-actions>

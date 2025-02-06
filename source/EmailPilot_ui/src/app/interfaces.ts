@@ -42,3 +42,51 @@ export interface User {
     message: string;
     error: string;
   }
+
+
+
+  export interface MailContent {
+    mlCntntId: string;
+    mlCntnt: string;
+    addByUser: string;
+    title: string;
+    subject: string;
+    file: string;
+    cc: string;
+    bcc: string;
+    addTm: string; // ISO string format for timestamps
+    uptTm: string; // ISO string format for timestamps
+  }
+  
+  export interface MailGroup {
+    mGrpId: string;
+    mGrpNm: string;
+    adedUsr: string;
+    mailIds: string[]; // Assuming TBNovaEmailPilotMailId maps to string IDs
+    addTs: string; // ISO string format for timestamps
+    updtTs: string; // ISO string format for timestamps
+  }
+  
+  export interface Mail {
+    mId: string;
+    mailId: string;
+    hrName: string;
+    cmpnyNm: string;
+    addByUser: string;
+    mailGroups: string[]; // Assuming TBNovaEmailPilotMailGroup maps to string IDs
+    addTs: string; // ISO string format for timestamps
+    updtTs: string; // ISO string format for timestamps
+  }
+  
+  export interface ScheduledEmail {
+    id: string;
+    userId: string;
+    grpId: string;
+    emailTemp: string;
+    scheduledTime: string; // ISO string format for timestamps
+    timeZone: string;
+    crtTm: string; // ISO string format for timestamps
+    uptTm: string; // ISO string format for timestamps
+    scheduleDaily: string;
+    scheduleDailyTime: string; // ISO string format for time
+  }

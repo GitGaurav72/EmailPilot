@@ -9,8 +9,8 @@
         <button class="action-button" routerLink="/emailGroup/{{userId}}">
           <i class="fas fa-users"></i> Email Group
         </button>
-        <button class="action-button" routerLink="/composeEmail">
-          <i class="fas fa-file-alt"></i> Create Template
+        <button class="action-button" routerLink="/templateList/{{userId}}">
+          <i class="fas fa-file-alt"></i> Email Template
         </button>
       </div>
     </header>
@@ -34,7 +34,7 @@
           <div class="form-group">
             <label for="emailTemplate">Select Email Template</label>
             <select id="emailTemplate" [(ngModel)]="selectedTemplate" name="emailTemplate" required>
-              <option *ngFor="let template of emailTemplates" [value]="template.id">{{ template.name }}</option>
+              <option *ngFor="let template of emailTemplates" [value]="template.mlCntntId">{{ template.title }}</option>
             </select>
           </div>
         </div>
@@ -73,8 +73,8 @@
       <div class="grid-container">
         <div *ngFor="let scheduled of scheduledEmails" class="scheduled-card">
           <div class="card-header">
-            <span class="status-indicator" [ngClass]="scheduled.status.toLowerCase()"></span>
-            <h4>{{ getGroupName(scheduled.groupId) }}</h4>
+            <span class="status-indicator" [ngClass]="status.toLowerCase()"></span>
+            <h4>{{ getGroupName(scheduled.grpId) }}</h4>
             <div class="card-actions">
               <button class="icon-button" (click)="editSchedule(scheduled)">
                 <i class="fas fa-edit"></i>
@@ -85,8 +85,8 @@
             </div>
           </div>
           <div class="card-details">
-            <p><strong>Template:</strong> {{ getTemplateName(scheduled.templateId) }}</p>
-            <p><strong>Scheduled At:</strong> {{ scheduled.datetime | date:'medium' }} ({{ scheduled.timezone }})</p>
+            <p><strong>Template:</strong> {{ getTemplateName(scheduled.emailTemp) }}</p>
+            <p><strong>Scheduled At:</strong> {{ scheduled.scheduleDaily | date:'medium' }} ({{ scheduled.timeZone }})</p>
           </div>
         </div>
       </div>

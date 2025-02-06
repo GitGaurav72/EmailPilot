@@ -26,11 +26,9 @@ public class TBNovaEmailPilotMailContent {
     @Column(name = "add_by_user")
     private String addByUser;
     
-    @Column(name = "add_to_grp")
-    private String addToGrp;
     
     @Column(name = "m_heading")
-    private String heading;
+    private String title;
 
     @Column(name = "subject")
     private String subject;
@@ -68,13 +66,6 @@ public class TBNovaEmailPilotMailContent {
 		this.addByUser = addByUser;
 	}
 
-	public String getAddToGrp() {
-		return addToGrp;
-	}
-
-	public void setAddToGrp(String addToGrp) {
-		this.addToGrp = addToGrp;
-	}
 
 	public void setMlCntntId(String mlCntntId) {
         this.mlCntntId = mlCntntId;
@@ -88,12 +79,12 @@ public class TBNovaEmailPilotMailContent {
         this.mlCntnt = mlCntnt;
     }
 
-    public String getHeading() {
-        return heading;
+    public String getTitle() {
+        return title;
     }
 
-    public void setHeading(String heading) {
-        this.heading = heading;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSubject() {

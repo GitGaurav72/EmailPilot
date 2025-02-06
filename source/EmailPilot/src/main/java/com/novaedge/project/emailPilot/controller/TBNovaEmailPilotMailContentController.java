@@ -25,6 +25,12 @@ public class TBNovaEmailPilotMailContentController {
         Optional<TBNovaEmailPilotMailContent> mailContent = service.getMailContentById(id);
         return mailContent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/usr/{userId}")
+    public ResponseEntity<List<TBNovaEmailPilotMailContent>> getMailContentByUserId(@PathVariable String userId) {
+        List<TBNovaEmailPilotMailContent> mailContent = service.getMailContentByUserId(userId);
+        return ResponseEntity.ok(mailContent);
+    }
 
     @PostMapping
     public TBNovaEmailPilotMailContent createMailContent(@RequestBody TBNovaEmailPilotMailContent mailContent) {
@@ -39,8 +45,7 @@ public class TBNovaEmailPilotMailContentController {
             updatedMailContent.setMlCntntId(mailContentDetails.getMlCntntId());
             updatedMailContent.setMlCntnt(mailContentDetails.getMlCntnt());
             updatedMailContent.setAddByUser(mailContentDetails.getAddByUser());
-            updatedMailContent.setAddToGrp(mailContentDetails.getAddToGrp());
-            updatedMailContent.setHeading(mailContentDetails.getHeading());
+            updatedMailContent.setTitle(mailContentDetails.getTitle());
             updatedMailContent.setSubject(mailContentDetails.getSubject());
             updatedMailContent.setFile(mailContentDetails.getFile());
             updatedMailContent.setCc(mailContentDetails.getCc());

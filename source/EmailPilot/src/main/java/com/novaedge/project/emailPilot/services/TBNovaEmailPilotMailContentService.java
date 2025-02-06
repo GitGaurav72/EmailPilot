@@ -30,4 +30,9 @@ public class TBNovaEmailPilotMailContentService {
     public void deleteMailContent(String id) {
         repository.deleteById(id);
     }
+
+	public List<TBNovaEmailPilotMailContent> getMailContentByUserId(String userId) {
+		
+		return repository.getByAddByUser(userId);
+	}
 }
