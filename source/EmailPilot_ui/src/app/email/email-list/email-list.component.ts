@@ -32,7 +32,7 @@ export class EmailListComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 30;
   totalEmails = 0;
-
+  userId: string | null = localStorage.getItem('userId');
   constructor(private emailService: EmailService, private snackBar: MatSnackBar,public aesService: AesDecryptService) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class EmailListComponent implements OnInit {
   }
 
   loadEmails(): void {
-    this.emailService.getEmails(this.currentPage, this.itemsPerPage).subscribe(
+    this.emailService.getEmails(this.currentPage, this.itemsPerPage,this.userId ?? '').subscribe(
       (data: any) => {
         this.emails = data
         this.totalEmails = data.total;

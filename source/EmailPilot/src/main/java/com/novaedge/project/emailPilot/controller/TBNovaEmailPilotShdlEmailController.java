@@ -44,7 +44,7 @@ public class TBNovaEmailPilotShdlEmailController {
     	 return ResponseEntity.ok(service.create(entity));
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") 
     public ResponseEntity<ApiResponse<TBNovaEmailPilotShdlEmail>> findById(@PathVariable String id) {
         return ResponseEntity.ok(service.findShdlMailId(id));
     }

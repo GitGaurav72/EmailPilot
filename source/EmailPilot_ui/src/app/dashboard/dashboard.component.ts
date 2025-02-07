@@ -8,6 +8,15 @@ import { TemplateService } from '../services/templateService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ScheduledEmail } from '../interfaces';
 import { DashboardService } from '../services/dashboardService';
+import { AfterViewInit } from '@angular/core';
+import { Chart } from 'chart.js/auto';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+
 
 interface EmailGroup {
   mGrpId: string;
@@ -18,18 +27,22 @@ interface EmailGroup {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterModule],
+  imports: [FormsModule, CommonModule, RouterModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 
 
 
-export class DashboardComponent {
+export class DashboardComponent implements AfterViewInit {
     // Add these new properties
     isDaily: boolean = false;
     dailyTime: string = '';
-    
+
     userId: string | null = localStorage.getItem('userId'); // ✅ Declare userId as a class property
     emailGroups: EmailGroup[] = [];
     // emailTemplates: MailContent[] = [];
@@ -61,10 +74,11 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.loadEmails();
     this.loadTemplate();
+    this.loadSheduleEmail();
   }
 
   loadEmails(): void {
-    this.emailService.getEmailGruoup(0,0).subscribe(
+    this.emailService.getEmailGruoup(0,0,this.userId ?? '').subscribe(
       (data: any) => {
         this.emailGroups = data.map((emailObj: any) => emailObj);
       },
@@ -76,7 +90,7 @@ export class DashboardComponent {
   }
 
   loadTemplate(): void {
-    this.templateService.getTemplateList(0, 0).subscribe(
+    this.templateService.getTemplateList(0, 0, this.userId ?? '').subscribe(
       (data: any) => {
         this.emailTemplates= data;
         console.log(this.emailTemplates);
@@ -84,6 +98,18 @@ export class DashboardComponent {
       (error) => {
         console.error('Error fetching emails:', error);
         this.snackBar.open('Failed to load emails', 'Close', { duration: 3000 });
+      }
+    );
+  }
+
+  loadSheduleEmail(): void {
+    this.dashboardService.getSheduleEmailList(0,0,this.userId ?? '').subscribe(
+      (data: any) => {
+        this.scheduledEmails = data.data.map((emailObj: any) => emailObj);
+      },
+      (error) => {
+        console.error('Error fetching emails:', error);
+        // this.snackBar.open('Failed to load emails', 'Close', { duration: 3000 });
       }
     );
   }
@@ -139,7 +165,7 @@ export class DashboardComponent {
         this.scheduledEmails.push(newSchedule);
       }
 
-      this.dashboardService.AddSheduleEmail(this.scheduledEmails[1]).subscribe(
+      this.dashboardService.AddSheduleEmail(this.scheduledEmails[this.scheduledEmails.length-1]).subscribe(
         (response) => {
           this.snackBar.open('Template added successfully', 'Close', { duration: 3000 });
               // Refresh the list
@@ -171,4 +197,38 @@ export class DashboardComponent {
     this.scheduledTime = '';
     this.timezone = 'UTC';
   }
+
+  ngAfterViewInit(): void {  // Ensure this method is present
+    this.loadChart();
+  }
+
+  loadChart() {
+    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'],
+          datasets: [{
+            label: 'Send Mails',
+            data: [10, 20, 30, 25, 15, 12, 2],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  }
+
+  selectedDate: Date = new Date(); 
 }

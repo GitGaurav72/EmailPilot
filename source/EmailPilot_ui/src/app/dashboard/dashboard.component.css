@@ -151,3 +151,31 @@
     width: auto;
     margin: 0;
   }
+
+  /* Calender  */
+  .calendar-container {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+
+
+
+  .chart-container {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }

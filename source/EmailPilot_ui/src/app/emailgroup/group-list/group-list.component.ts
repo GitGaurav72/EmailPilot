@@ -44,7 +44,7 @@ export class GroupListComponent implements OnInit {
   }
 
   loadEmails(): void {
-    this.emailService.getEmailGruoup(this.currentPage, this.itemsPerPage).subscribe(
+    this.emailService.getEmailGruoup(this.currentPage, this.itemsPerPage, this.userId ?? '').subscribe(
       (data: any) => {
         this.emailGroup = data;
         this.totalEmails = data.total;

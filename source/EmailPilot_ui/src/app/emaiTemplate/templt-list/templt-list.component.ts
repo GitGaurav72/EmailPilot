@@ -46,7 +46,7 @@ export class TempltListComponent implements OnInit{
   }
 
   loadTemplate(): void {
-    this.templateService.getTemplateList(this.currentPage, this.itemsPerPage).subscribe(
+    this.templateService.getTemplateList(this.currentPage, this.itemsPerPage, this.userId ?? '').subscribe(
       (data: any) => {
         this.templateGrp = data;
         this.totalEmails = data.total;

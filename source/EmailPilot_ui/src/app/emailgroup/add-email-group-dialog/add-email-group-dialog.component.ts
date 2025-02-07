@@ -34,6 +34,7 @@ export class AddEmailGroupDialogComponent implements OnInit {
   emailGroupForm: FormGroup;
   emailList: string[] = []; // Replace with your email lis
   emails : any;
+  userId: string | null = localStorage.getItem('userId');
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddEmailGroupDialogComponent>,
@@ -52,7 +53,7 @@ export class AddEmailGroupDialogComponent implements OnInit {
   }
 
   loadEmails(): void {
-    this.emailService.getEmails(0, 0).subscribe(
+    this.emailService.getEmails(0, 0, this.userId ?? '').subscribe(
       (data: any) => {
         this.emails = data;
   

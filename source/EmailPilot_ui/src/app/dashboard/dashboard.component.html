@@ -91,4 +91,18 @@
         </div>
       </div>
     </div>
+
+    <div class="scheduled-list">
+      <canvas id="myChart"></canvas>
+      <div class="calendar-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <p>📅 Selected Date: {{ selectedDate | date:'fullDate' }}</p>
+      </div>
+    </div>
   </div>

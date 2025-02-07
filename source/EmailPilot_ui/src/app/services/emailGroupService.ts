@@ -14,8 +14,8 @@ export class EmailGroupService {
     console.log('Calling API:', this.apiUrl); // ✅ Log API URL
     return this.http.post(this.apiUrl, emailData);
   }
-  getEmailGruoup(page: number, size: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/usrid/11d63d78-7e8c-44d2-9714-f8e0c3fdd0d6?page=${page}&size=${size}`);
+  getEmailGruoup(page: number, size: number, userId : string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/usrid/${userId}?page=${page}&size=${size}`);
   }
 
   addEmailGroup(emailGrp: any): Observable<any> {
