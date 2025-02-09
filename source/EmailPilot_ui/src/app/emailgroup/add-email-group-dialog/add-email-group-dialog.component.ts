@@ -32,19 +32,20 @@ import { AesDecryptService } from '../../services/aes.service';
 
 export class AddEmailGroupDialogComponent implements OnInit {
   emailGroupForm: FormGroup;
-  emailList: string[] = []; // Replace with your email lis
-  emails : any;
+  emailList: string[] = [];
+  emails: any[] = [];
   userId: string | null = localStorage.getItem('userId');
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddEmailGroupDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private emailService : EmailService,
-    public aesService : AesDecryptService,
+    private emailService: EmailService,
+    public aesService: AesDecryptService,
   ) {
     this.emailGroupForm = this.fb.group({
       groupName: ['', Validators.required],
-      selectedEmails: [[], Validators.required]
+      selectedEmails: [[], Validators.required] // Ensure selectedEmails is an array
     });
   }
 
@@ -56,10 +57,7 @@ export class AddEmailGroupDialogComponent implements OnInit {
     this.emailService.getEmails(0, 0, this.userId ?? '').subscribe(
       (data: any) => {
         this.emails = data;
-  
-        // Extract email IDs (Assuming data is an array of objects with an 'email' field)
         this.emailList = data.map((emailObj: any) => emailObj.mailId);
-  
         console.log("Extracted Email List:", this.emailList);
       },
       (error) => {
@@ -74,6 +72,7 @@ export class AddEmailGroupDialogComponent implements OnInit {
 
   onSave(): void {
     if (this.emailGroupForm.valid) {
+      console.log("Form Submitted:", this.emailGroupForm.value);
       this.dialogRef.close(this.emailGroupForm.value);
     }
   }

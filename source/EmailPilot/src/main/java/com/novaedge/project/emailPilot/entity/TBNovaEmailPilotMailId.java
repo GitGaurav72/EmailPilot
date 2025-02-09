@@ -12,6 +12,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotMailGroup;
 
 @Entity
@@ -36,6 +39,7 @@ public class TBNovaEmailPilotMailId {
     private String addByUser;
     
     @ManyToMany(mappedBy = "mailIds")
+    @JsonBackReference
     private Set<TBNovaEmailPilotMailGroup> mailGroups = new HashSet<>();
 
     @Column(name = "add_ts")

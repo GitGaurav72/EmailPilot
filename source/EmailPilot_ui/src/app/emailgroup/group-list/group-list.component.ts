@@ -77,6 +77,7 @@ export class GroupListComponent implements OnInit {
     // Call your service to save the email group
     data.mGrpNm =  data.groupName;
     data.adedUsr =  this.userId;
+    data.mailIds = data.selectedEmails;
     data.addTs = new Date().toISOString();
     data.updtTs= new Date().toISOString();
     this.emailService.addEmailGroup(data).subscribe(
@@ -89,5 +90,21 @@ export class GroupListComponent implements OnInit {
         this.snackBar.open('Failed to add email group', 'Close', { duration: 3000 });
       }
     );
+  }
+
+  onFileUpload(event: any, fileType: string): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.emailService.uploadFile(file, fileType).subscribe(
+        () => {
+          this.snackBar.open(`${fileType.toUpperCase()} uploaded successfully!`, 'Close', { duration: 3000 });
+          this.loadEmails();
+        },
+        (error) => {
+          console.error(`Error uploading ${fileType}:`, error);
+          this.snackBar.open(`Failed to upload ${fileType}`, 'Close', { duration: 3000 });
+        }
+      );
+    }
   }
 }

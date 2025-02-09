@@ -7,6 +7,8 @@ import java.util.Set;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -31,6 +33,7 @@ public class TBNovaEmailPilotMailGroup {
     private String adedUsr;
     
     @ManyToMany
+    @JsonIgnoreProperties
     @JoinTable(name = "TB_Nova_EmailPilot_Group_Mail_Mapping", joinColumns = @JoinColumn (name = "m_grp_id"), inverseJoinColumns = @JoinColumn(name = "m_id"))
     private Set<TBNovaEmailPilotMailId> mailIds = new HashSet<>();
 

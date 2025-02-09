@@ -1,7 +1,11 @@
 <div class="container">
     <div class="header">
       <button mat-button color="primary" (click)="openAddEmailGroupDialog()">➕ Add New Email Group </button>
-
+      <input type="file" (change)="onFileUpload($event, 'excel')" accept=".xlsx, .xls" hidden #excelUpload />
+      <button mat-button color="accent" (click)="excelUpload.click()">📂 Upload Excel</button>
+      
+      <input type="file" (change)="onFileUpload($event, 'pdf')" accept=".pdf" hidden #pdfUpload />
+      <button mat-button color="warn" (click)="pdfUpload.click()">📄 Upload PDF</button>
     </div>
   
     <table mat-table [dataSource]="emailGroup" class="mat-elevation-z8">

@@ -3,10 +3,17 @@ package com.novaedge.project.emailPilot.controller;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotMailGroup;
 import com.novaedge.project.emailPilot.model.ApiResponse;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotMailGroupService;
+
+import io.jsonwebtoken.io.IOException;
+import jakarta.ws.rs.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,5 +70,33 @@ public class TBNovaEmailPilotMailGroupController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    
+    
+    @PostMapping("/upload/{fileType}")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, @PathVariable("fileType")  String fileType) throws java.io.IOException {
+        try {
+            // Process file content without saving
+        	System.out.println("API Executed");
+            String result = processFile(file);
+
+            return ResponseEntity.ok("File processed successfully: " + result);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("File processing failed: " + e.getMessage());
+        }
+    }
+
+    private String processFile(MultipartFile file) throws IOException, java.io.IOException {
+        StringBuilder content = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Perform some operation on each line
+                content.append(line.toUpperCase()).append("\n"); // Example: Convert to uppercase
+            }
+        }
+
+        return content.toString();
     }
 }
