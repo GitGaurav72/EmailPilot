@@ -40,7 +40,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
             .authorizeRequests()
-            .requestMatchers("/api/register", "/api/login", "/api/users/").permitAll()  // Allow public access to these endpoints
+            .requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()  // Allow public access to these endpoints
             .anyRequest().authenticated()  // Require authentication for other requests
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

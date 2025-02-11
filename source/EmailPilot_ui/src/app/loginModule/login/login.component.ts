@@ -1,25 +1,32 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { LoginCredentials, ApiResponse,LoginReposne } from '../../interfaces';
+import { LoginCredentials, ApiResponse, LoginReposne } from '../../interfaces';
 import { AuthService } from '../../services/authService';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
   credentials: LoginCredentials = {
     usernameOrEmail: '',
     password: '',
   };
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private http: HttpClient
+  ) {
+    // Add the callback function to the global window object
+    (window as any).handleGoogleSignIn = (response: any) => this.handleGoogleSignIn(response);
+
+  }
 
   onLogin() {
     console.log('Username/Email:', this.credentials.usernameOrEmail);
@@ -40,5 +47,25 @@ export class LoginComponent {
       },
     });
   }
-}
 
+  handleGoogleSignIn(response: any) {
+    const authCode = response.credential; // Extract the authorization code
+    this.sendAuthCodeToBackend(authCode);
+  }
+
+  sendAuthCodeToBackend(authCode: string) {
+    const backendUrl = 'http://localhost:8080/auth/google/callback';
+    this.http.post(backendUrl, { code: authCode })
+      .subscribe(
+        (response: any) => {
+          console.log('Login successful', response);
+          // Handle successful login (e.g., store token, redirect)
+        },
+        (error) => {
+          console.error('Login failed', error);
+          // Handle login error
+        }
+      );
+  }
+
+}

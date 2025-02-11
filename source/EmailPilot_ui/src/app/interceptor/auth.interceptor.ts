@@ -1,36 +1,3 @@
-// import { Injectable } from '@angular/core';
-// import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-
-// @Injectable()
-// export class AuthInterceptor implements HttpInterceptor {
-//     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//         const token = localStorage.getItem('authToken');
-//         console.log('Intercepted Request URL:', req.url);
-//         console.log('Auth Token:', token);
-      
-//         const excludedUrls = ['/api/login', '/api/register'];
-//         if (excludedUrls.some(url => req.url.includes(url))) {
-//           console.log('Skipping token for:', req.url);
-//           return next.handle(req);
-//         }
-       
-//         if (token) {
-//           const clonedRequest = req.clone({
-//             setHeaders: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           });
-//           console.log('Token added to request:', clonedRequest);
-//           return next.handle(clonedRequest);
-//         }
-      
-//         return next.handle(req);
-//       }
-      
-// }
-
-
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -46,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // console.log('Auth Token:', token);
         // console.log('User ID:', userId);
 
-        const excludedUrls = ['/api/login', '/api/register'];
+        const excludedUrls = ['/api/login', '/api/register', '/auth/google/callback'];
         if (excludedUrls.some(url => request.url.includes(url))) {
             console.log('Skipping token for:', request.url);
             return next.handle(request);

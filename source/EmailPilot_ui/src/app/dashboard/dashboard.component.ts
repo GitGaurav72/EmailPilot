@@ -158,7 +158,7 @@ export class DashboardComponent implements AfterViewInit {
           scheduledTime: this.scheduledTime,
           scheduleDailyTime : '',
           timeZone: this.timezone,
-          scheduleDaily: 'Y',
+          scheduleDaily: '',
           crtTm: new Date().toISOString(), // ISO string format for timestamps
           uptTm: new Date().toISOString()
         };

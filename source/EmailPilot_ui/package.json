@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@abacritt/angularx-social-login": "^2.3.0",
     "@angular/animations": "^17.3.0",
     "@angular/cdk": "^17.3.10",
     "@angular/common": "^17.3.0",
@@ -21,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@tinymce/tinymce-angular": "^8.0.1",
+    "@types/google.accounts": "^0.0.15",
     "chart.js": "^4.4.7",
     "crypto-js": "^4.2.0",
     "ngx-quill": "^27.0.0",

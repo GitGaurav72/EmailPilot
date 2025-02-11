@@ -19,4 +19,10 @@ export class AuthService {
     return this.http.post<ApiResponse<User>>(`${this.apiUrl}/register`, Credentials);
   }
 
+  
+  loginWithGoogle(idToken: String): Observable<ApiResponse<LoginReposne>> {
+    return this.http.post<ApiResponse<LoginReposne>>(`${this.apiUrl}/login`, idToken);
+  }
+  
+
 }
