@@ -12,21 +12,28 @@
     <button type="submit" class="login-button">Login</button>
   </form>
   <p>Don't have an account? <a routerLink="/register">Register here</a>.</p>
-  <div id="g_id_onload"
-       data-client_id="480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com"
-       data-context="use"
-       data-ux_mode="popup"
-       data-callback="handleGoogleSignIn"
-       data-login_uri="http://localhost:8080/api/login"
-       data-itp_support="true">
-  </div>
+ <!-- Google One Tap -->
+<!-- <div id="g_id_onload"
+data-client_id="480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com"
+data-context="use"
+data-ux_mode="redirect"
+data-login_uri="http://localhost:4200/auth/callback"
+data-itp_support="true"
+data-responseType = "code"
+data-responseMode = "query"> 
+</div>-->
 
-  <div class="g_id_signin"
-       data-type="standard"
-       data-shape="rectangular"
-       data-theme="outline"
-       data-text="signin_with"
-       data-size="large"
-       data-logo_alignment="left">
-  </div>
+<!-- Google Sign-In Button -->
+<!-- <div class="g_id_signin"
+data-type="standard"
+data-shape="rectangular"
+data-theme="outline"
+data-text="signin_with"
+data-size="large"
+data-logo_alignment="left">
+</div> -->
+<button type="button" class="google-sign-in-button" (click)="loginWithGoogle()" >
+  Sign in with Google
+</button>
+
 </div>

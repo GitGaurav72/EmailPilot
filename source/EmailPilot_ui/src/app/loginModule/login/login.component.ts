@@ -24,8 +24,22 @@ export class LoginComponent {
     private http: HttpClient
   ) {
     // Add the callback function to the global window object
-    (window as any).handleGoogleSignIn = (response: any) => this.handleGoogleSignIn(response);
+     (window as any).handleGoogleSignIn = (response: any) => this.handleGoogleSignIn(response);
 
+  }
+
+  loginWithGoogle() {
+    const clientId = '480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com';
+    const redirectUri = 'http://localhost:4200/auth/callback'; // Ensure this is registered in Google Console
+    const scope = 'openid email profile';
+    const responseType = 'code';
+    const responseMode = 'query';
+    const state = 'random_state'; // Optional: Protect against CSRF
+
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}&response_mode=${responseMode}&state=${state}`;
+
+    // Redirect the user to Google's OAuth page
+    window.location.href = authUrl;
   }
 
   onLogin() {
@@ -49,7 +63,7 @@ export class LoginComponent {
   }
 
   handleGoogleSignIn(response: any) {
-    const authCode = response.credential; // Extract the authorization code
+    const authCode = response.code; // Extract the authorization code
     this.sendAuthCodeToBackend(authCode);
   }
 

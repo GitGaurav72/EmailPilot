@@ -14,6 +14,7 @@ import { AddEmailComponent } from './email/add-email/add-email.component';
 import { EmailListComponent } from './email/email-list/email-list.component';
 import { GroupListComponent } from './emailgroup/group-list/group-list.component';
 import { TempltListComponent } from './emaiTemplate/templt-list/templt-list.component';
+import { AuthCallbackComponent } from './loginModule/auth-callback/auth-callback.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,7 @@ export const routes: Routes = [
     { path: 'emailGroup/:usrid', component : GroupListComponent},
     {path : 'emailList/:usrid', component :  EmailListComponent},
     {path : 'templateList/:usrid', component :  TempltListComponent},
+    { path: 'auth/callback', component: AuthCallbackComponent},
     { path: '**', redirectTo: '' } 
 
     

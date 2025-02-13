@@ -15,7 +15,9 @@ import org.springframework.web.client.RestTemplate;
 import com.novaedge.project.emailPilot.dao.TBNovaEmailPilotUserDao;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotUserEntity;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
+import com.novaedge.project.emailPilot.util.AESUtil;
 import com.novaedge.project.emailPilot.util.JwtUtil;
+import com.novaedge.project.emailPilot.util.StringUtil;
 
 import java.util.*;
 
@@ -31,6 +33,9 @@ public class GoogleAuthController {
 
     @Autowired
     private RestTemplate restTemplate;
+    
+    @Autowired
+	private TBNovaEmailPilotUserDao tBNovaEmailPilotUserDao;
 
     @Autowired
     private TBNovaEmailPilotCustUserDetailsService userDetailsService;
@@ -45,21 +50,21 @@ public class GoogleAuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/callback")
-    public ResponseEntity<?> handleGoogleCallback(@RequestBody String code) {
+    public ResponseEntity<?> handleGoogleCallback(@RequestBody Map<String, String> code) {
         try {
             String tokenEndpoint = "https://oauth2.googleapis.com/token";
             MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-            params.add("code", code);
+            System.out.println(code.get("code"));
+            params.add("code", code.get("code"));
             params.add("client_id", clientId);
             params.add("client_secret", clientSecret);
-            params.add("redirect_uri", "https://developers.google.com/oauthplayground");
+            params.add("redirect_uri", "http://localhost:4200/auth/callback");
             params.add("grant_type", "authorization_code");
-            System.out.println("-------------------------------------------------");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
             ResponseEntity<Map> tokenResponse = restTemplate.postForEntity(tokenEndpoint, request, Map.class);
-            String idToken = (String) tokenResponse.getBody().get("id_token");
+            String idToken = (String) tokenResponse.getBody().get("id_token"); 
             String userInfoUrl = "https://oauth2.googleapis.com/tokeninfo?id_token=" + idToken;
             ResponseEntity<Map> userInfoResponse = restTemplate.getForEntity(userInfoUrl, Map.class);
             if (userInfoResponse.getStatusCode() == HttpStatus.OK) {
@@ -67,20 +72,27 @@ public class GoogleAuthController {
                 String email = (String) userInfo.get("email");
                 UserDetails userDetails = null;
                 try{
-                    userDetails = userDetailsService.loadUserByUsername(email);
+                    userDetails = userDetailsService.loadUserByUsername(AESUtil.encrypt(email));
                 }catch (Exception e){
                     TBNovaEmailPilotUserEntity user = new TBNovaEmailPilotUserEntity();
-                    user.setEmail(email);
-                    user.setUserName(email);
+                    user.setId(UUID.randomUUID().toString());
+                    user.setFirstName((String) userInfo.get("given_name"));
+                    user.setLastName((String) userInfo.get("family_name"));
+                    user.setEmail(AESUtil.encrypt(email));
+                    user.setUserName(StringUtil.generateRandomId(email));
                     user.setPassword(passwordEncoder.encode(UUID.randomUUID().toString()));
                     userRepository.save(user);
                 }
                 String jwtToken = jwtUtil.generateToken(email);
-                return ResponseEntity.ok(Collections.singletonMap("token", jwtToken));
+                TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(AESUtil.encrypt(email),AESUtil.encrypt(email));
+                Map<String, Object> response = new HashMap<>();
+                response.put("token", jwtToken);
+                response.put("userId", usr.getId());
+                return ResponseEntity.ok(response);
             }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         } catch (Exception e) {
-          
+        	e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
