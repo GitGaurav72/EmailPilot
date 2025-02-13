@@ -3,7 +3,7 @@ package com.novaedge.project.emailPilot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.novaedge.project.emailPilot.dao.TBNovaEmailPilotUserDao;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotUserEntity;
+import com.novaedge.project.emailPilot.model.UserDetails;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
 import com.novaedge.project.emailPilot.util.AESUtil;
 import com.novaedge.project.emailPilot.util.JwtUtil;
@@ -83,7 +84,7 @@ public class GoogleAuthController {
                     user.setPassword(passwordEncoder.encode(UUID.randomUUID().toString()));
                     userRepository.save(user);
                 }
-                String jwtToken = jwtUtil.generateToken(email);
+                String jwtToken = jwtUtil.generateToken(AESUtil.encrypt(email));
                 TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(AESUtil.encrypt(email),AESUtil.encrypt(email));
                 Map<String, Object> response = new HashMap<>();
                 response.put("token", jwtToken);

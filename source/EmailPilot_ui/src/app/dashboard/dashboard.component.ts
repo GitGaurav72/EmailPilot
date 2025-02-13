@@ -93,7 +93,6 @@ export class DashboardComponent implements AfterViewInit {
     this.templateService.getTemplateList(0, 0, this.userId ?? '').subscribe(
       (data: any) => {
         this.emailTemplates= data;
-        console.log(this.emailTemplates);
       },
       (error) => {
         console.error('Error fetching emails:', error);

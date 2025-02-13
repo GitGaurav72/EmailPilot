@@ -2,8 +2,10 @@ package com.novaedge.project.emailPilot.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.novaedge.project.emailPilot.model.UserDetails;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,6 +56,6 @@ public class JwtUtil {
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (username.equals(userDetails.getUsername()) || username.equals(userDetails.getEmail()) && !isTokenExpired(token));
     }
 }

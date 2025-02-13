@@ -86,7 +86,7 @@
           </div>
           <div class="card-details">
             <p><strong>Template:</strong> {{ getTemplateName(scheduled.emailTemp) }}</p>
-            <p><strong>Scheduled At:</strong> {{ scheduled.scheduleDaily | date:'medium' }} ({{ scheduled.timeZone }})</p>
+            <p><strong>Scheduled At:</strong> {{ scheduled.scheduleDailyTime | date:'medium' }} ({{ scheduled.timeZone }})</p>
           </div>
         </div>
       </div>
