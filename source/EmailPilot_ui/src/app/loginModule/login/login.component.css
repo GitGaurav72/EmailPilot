@@ -1,12 +1,26 @@
+.login-Page{
+
+  background-image: url('../../../assets/images/login.png');
+  background-size: cover;
+  background-position: center;
+  background-size: 1000px;
+  background-repeat: no-repeat;
+  margin-left: -30%;
+}
+
+
 .login-container {
+   
     max-width: 400px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     margin-top: 8rem;
     margin-right: 6rem;
+    background-color:#b3ecff;
+    background-color: transparent;
+
   }
   
   h2 {
@@ -28,15 +42,17 @@
   input {
     width: 100%;
     padding: 0.50rem;
-    border: 1px solid #ddd;
+    fill:rgb(253, 253, 253);
+    border: 1px solid #ffffff;
     border-radius: 4px;
     font-size: 1rem;
+   
   }
   
   .login-button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #1a73e8;
+    background-color:#b3ecff;
     color: white;
     border: none;
     border-radius: 4px;

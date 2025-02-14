@@ -5,6 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  
 }
 
 /* Header */
@@ -17,9 +18,18 @@
   color: white;
 }
 
+
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: bold; /* Reduce space between logo and text */
+}
+
+.logo-img {
+  width: 50px;
+  height: auto;
 }
 
 .nav {
