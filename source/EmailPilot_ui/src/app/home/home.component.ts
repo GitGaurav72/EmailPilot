@@ -12,6 +12,12 @@ import {RouterModule, Router } from '@angular/router';
 export class HomeComponent {
   constructor(private router: Router) {}
 
+  toggleMenu() {
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      nav.classList.toggle('nav-active');
+    }
+  }
   composeEmail() {
     this.router.navigate(['/composeEmail']);
   }
@@ -19,4 +25,5 @@ export class HomeComponent {
   viewScheduledEmails() {
     this.router.navigate(['/scheduled-emails']);
   }
+
 }

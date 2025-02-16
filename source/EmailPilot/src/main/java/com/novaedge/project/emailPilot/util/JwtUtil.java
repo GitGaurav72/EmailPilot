@@ -4,7 +4,9 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
-import com.novaedge.project.emailPilot.model.UserDetails;
+import com.novaedge.project.emailPilot.model.CustomUserDetails;
+
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Key;
 import java.util.Date;
@@ -54,8 +56,24 @@ public class JwtUtil {
                 .compact();
     }
 
+//    public Boolean validateToken(String token, UserDetails userDetails) {
+//        final String username = extractUsername(token);
+//        return (username.equals(userDetails.getUsername()) || username.equals(userDetails.getEmail()) && !isTokenExpired(token));
+//    }
+    
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) || username.equals(userDetails.getEmail()) && !isTokenExpired(token));
+
+        // Check if userDetails is an instance of your custom class
+        if (userDetails instanceof CustomUserDetails) {
+            String email = ((CustomUserDetails) userDetails).getEmail();
+            return (username.equals(userDetails.getUsername()) || 
+                    username.equals(email)) && 
+                    !isTokenExpired(token);
+        }
+
+        // Default check if it's not an instance of CustomUserDetails
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
+
 }
