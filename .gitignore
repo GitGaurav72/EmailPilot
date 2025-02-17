@@ -398,3 +398,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+source/EmailPilot_ui/src/app/loginModule/auth-callback/auth-callback.component.ts
