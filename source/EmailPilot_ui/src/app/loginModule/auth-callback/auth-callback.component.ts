@@ -50,8 +50,8 @@ export class AuthCallbackComponent implements OnInit {
 
 
   exchangeCodeForToken(code: string) {
-    const clientId = '480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com';
-    const clientSecret = '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'; // Replace with your client secret
+    // const clientId = '480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com';
+    // const clientSecret = ''; // Replace with your client secret
     const redirectUri = 'http://localhost:4200/auth/callback';
 
     const tokenUrl = 'https://oauth2.googleapis.com/token';
