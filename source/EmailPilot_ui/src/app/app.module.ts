@@ -13,7 +13,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { QuillModule } from 'ngx-quill';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'
-
+import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { AppComponent } from './app.component'; // ✅ Ensure AppComponent is imported
 import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure AuthInterceptor is imported
 
@@ -37,12 +37,19 @@ import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure 
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://your-backend-api'],
+        sendAccessToken: true,
+      },
+    }),
   ],
   providers: [
 
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },      // ✅ Enable hash-based routing globally
-    { provide: LocationStrategy, useClass: HashLocationStrategy }, // ✅ Add AuthInterceptor
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: OAuthStorage, useValue: localStorage }, // ✅ Add AuthInterceptor
   ],
   bootstrap: [] // ✅ Ensure AppComponent is bootstrapped
 })

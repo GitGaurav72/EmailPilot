@@ -5,7 +5,7 @@ import com.novaedge.project.emailPilot.model.ApiResponse;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotMailGroupService;
 
 import io.jsonwebtoken.io.IOException;
-import jakarta.ws.rs.Path;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

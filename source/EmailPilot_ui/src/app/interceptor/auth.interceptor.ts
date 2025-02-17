@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // console.log('Auth Token:', token);
         // console.log('User ID:', userId);
 
-        const excludedUrls = ['/api/login', '/api/register', '/auth/google/callback'];
+        const excludedUrls = ['/api/login', '/api/register', '/auth/google/callback', '/oauth2.googleapis.com/token'];
         if (excludedUrls.some(url => request.url.includes(url))) {
             console.log('Skipping token for:', request.url);
             return next.handle(request);
