@@ -40,14 +40,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
             .authorizeRequests()
-            .requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()  // Allow public access to these endpoints
-            .anyRequest().authenticated()  // Require authentication for other requests
+            .requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()  
+            .anyRequest().authenticated()
             .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .userDetailsService(TBNovaEmailPilotCustUserDetailsService);
 
         // Add JWT filter
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 }

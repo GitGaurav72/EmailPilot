@@ -7,6 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +25,7 @@ import com.novaedge.project.emailPilot.model.TBNovaEmailPilotUserReqModel;
 import com.novaedge.project.emailPilot.model.TBNovaEmailPilotUserRespModel;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotUserService;
 import com.novaedge.project.emailPilot.util.AESUtil;
-import com.novaedge.project.emailPilot.util.JwtUtil;
+import com.novaedge.project.emailPilot.util.JwtUtil1;
 import com.novaedge.project.emailPilot.util.StringUtil;
 
 @RestController
@@ -36,32 +39,69 @@ public class TBNovaEmailPilotLogInController {
 	private AuthenticationManager authenticationManager;
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private TBNovaEmailPilotUserDao tBNovaEmailPilotUserDao;
 	
-	@PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ApiResponse<AuthResponse>> TBNovaEmailPilotLogInByUserId(@RequestBody AuthRequest authRequest) throws Exception {
-			
-		  try {
-			  
-			  if(StringUtil.isValid(authRequest.getUsernameOrEmail())){
-				  authRequest.setUsernameOrEmail(AESUtil.encrypt(authRequest.getUsernameOrEmail()));
-			  }
-		        authenticationManager.authenticate(
-		                new UsernamePasswordAuthenticationToken(authRequest.getUsernameOrEmail(), authRequest.getPassword()));
-		    } catch (Exception ex) {
-		    	
-		    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, "Invalid credentials", null));
-		    }
+//	@PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<ApiResponse<AuthResponse>> TBNovaEmailPilotLogInByUserId(@RequestBody AuthRequest authRequest) throws Exception {
+//			
+//		  try {
+//			  
+//			  if(StringUtil.isValid(authRequest.getUsernameOrEmail())){
+//				  authRequest.setUsernameOrEmail(AESUtil.encrypt(authRequest.getUsernameOrEmail()));
+//			  }
+//			  
+//			  String encodedPassword = passwordEncoder.encode(authRequest.getPassword());
+//			    Authentication authentication = new UsernamePasswordAuthenticationToken(authRequest.getUsernameOrEmail(), authRequest.getPassword());
+//		        authenticationManager.authenticate(authentication);
+//		    } catch (Exception ex) {
+//		    	
+//		    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, "Invalid credentials", null));
+//		    }
+//
+//		    // Generate the JWT token
+//		    JwtUtil jwtUtil = new JwtUtil();
+//		    String token = jwtUtil.generateToken(authRequest.getUsernameOrEmail());
+//		    TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(authRequest.getUsernameOrEmail(),authRequest.getUsernameOrEmail());
+//
+//		    // Return the token wrapped in an AuthResponse object as JSON
+//		    return ResponseEntity.ok(new ApiResponse<>(true, "Login successful", new AuthResponse(token, usr.getId(), usr.getFirstName(),usr.getLastName(), usr.getUserName(), usr.getEmail())));
+//		
+//	}
+	
+	
+	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ApiResponse<AuthResponse>> TBNovaEmailPilotLogInByUserId(@RequestBody AuthRequest authRequest) {
+	    try {
+	        if (StringUtil.isValid(authRequest.getUsernameOrEmail())) {
+	            authRequest.setUsernameOrEmail(AESUtil.encrypt(authRequest.getUsernameOrEmail()));
+	        }
 
-		    // Generate the JWT token
-		    JwtUtil jwtUtil = new JwtUtil();
-		    String token = jwtUtil.generateToken(authRequest.getUsernameOrEmail());
-		    TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(authRequest.getUsernameOrEmail(),authRequest.getUsernameOrEmail());
+	        // Create an unauthenticated token
+	        UsernamePasswordAuthenticationToken authenticationToken =
+	                new UsernamePasswordAuthenticationToken(authRequest.getUsernameOrEmail(), authRequest.getPassword());
 
-		    // Return the token wrapped in an AuthResponse object as JSON
-		    return ResponseEntity.ok(new ApiResponse<>(true, "Login successful", new AuthResponse(token, usr.getId(), usr.getFirstName(),usr.getLastName(), usr.getUserName(), usr.getEmail())));
-		
+	        // Authenticate using AuthenticationManager
+	        Authentication authentication = authenticationManager.authenticate(authenticationToken);
+
+	        // Set authentication in the security context
+	        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+	        // Generate the JWT token
+	        JwtUtil1 jwtUtil = new JwtUtil1();
+	        String token = jwtUtil.generateToken(authRequest.getUsernameOrEmail());
+	        TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(authRequest.getUsernameOrEmail(), authRequest.getUsernameOrEmail());
+
+	        return ResponseEntity.ok(new ApiResponse<>(true, "Login successful", 
+	                new AuthResponse(token, usr.getId(), usr.getFirstName(), usr.getLastName(), usr.getUserName(), usr.getEmail())));
+
+	    } catch (Exception ex) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, "Invalid credentials", null));
+	    }
 	}
+
 	
 	@PostMapping("/signout")
 	public TBNovaEmailPilotUserRespModel TBNovaEmailPilotSignoutByUserId(@RequestBody TBNovaEmailPilotUserReqModel TBNovaEmailPilotUserReqModel) {

@@ -2,9 +2,11 @@ package com.novaedge.project.emailPilot.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.novaedge.project.emailPilot.model.UserDetails;
+
 
 import java.security.Key;
 import java.util.Date;
@@ -13,7 +15,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtUtil {
+public class JwtUtil1 {
 
     private final String secret = "abcdefghijklmnopqrstabcdwwwwwaaaaaaaaaaaaaaaaaaa"; // At least 256-bit key
     private final Key key = Keys.hmacShaKeyFor(secret.getBytes());
@@ -56,6 +58,6 @@ public class JwtUtil {
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) || username.equals(userDetails.getEmail()) && !isTokenExpired(token));
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

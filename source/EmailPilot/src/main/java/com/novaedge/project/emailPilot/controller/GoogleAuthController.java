@@ -3,7 +3,7 @@ package com.novaedge.project.emailPilot.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.novaedge.project.emailPilot.dao.TBNovaEmailPilotUserDao;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotUserEntity;
-import com.novaedge.project.emailPilot.model.UserDetails;
+
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
 import com.novaedge.project.emailPilot.util.AESUtil;
-import com.novaedge.project.emailPilot.util.JwtUtil;
+import com.novaedge.project.emailPilot.util.JwtUtil1;
 import com.novaedge.project.emailPilot.util.StringUtil;
 
 import java.util.*;
@@ -48,7 +48,7 @@ public class GoogleAuthController {
     private TBNovaEmailPilotUserDao userRepository;
 
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtUtil1 jwtUtil;
 
     @PostMapping("/callback")
     public ResponseEntity<?> handleGoogleCallback(@RequestBody Map<String, String> code) {
