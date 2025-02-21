@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtUtil1 {
+public class JwtUtil {
 
     private final String secret = "abcdefghijklmnopqrstabcdwwwwwaaaaaaaaaaaaaaaaaaa"; // At least 256-bit key
     private final Key key = Keys.hmacShaKeyFor(secret.getBytes());

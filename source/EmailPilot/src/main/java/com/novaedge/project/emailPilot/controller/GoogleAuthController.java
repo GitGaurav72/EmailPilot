@@ -17,7 +17,7 @@ import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotUserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
 import com.novaedge.project.emailPilot.util.AESUtil;
-import com.novaedge.project.emailPilot.util.JwtUtil1;
+import com.novaedge.project.emailPilot.util.JwtUtil;
 import com.novaedge.project.emailPilot.util.StringUtil;
 
 import java.util.*;
@@ -48,7 +48,7 @@ public class GoogleAuthController {
     private TBNovaEmailPilotUserDao userRepository;
 
     @Autowired
-    private JwtUtil1 jwtUtil;
+    private JwtUtil jwtUtil;
 
     @PostMapping("/callback")
     public ResponseEntity<?> handleGoogleCallback(@RequestBody Map<String, String> code) {

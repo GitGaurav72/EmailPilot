@@ -17,14 +17,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
-import com.novaedge.project.emailPilot.util.JwtUtil1;
+import com.novaedge.project.emailPilot.util.JwtUtil;
 
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 	
 	@Autowired
-	private JwtUtil1 jwtUtil;
+	private JwtUtil jwtUtil;
 
 	@Autowired
 	private TBNovaEmailPilotCustUserDetailsService service;
