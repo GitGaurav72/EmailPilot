@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.novaedge.project.emailPilot.dao.TBNovaEmailPilotUserDao;
 import com.novaedge.project.emailPilot.entity.TBNovaEmailPilotUserEntity;
-
+import org.springframework.security.core.userdetails.UserDetails;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
 import com.novaedge.project.emailPilot.util.AESUtil;
 import com.novaedge.project.emailPilot.util.JwtUtil1;

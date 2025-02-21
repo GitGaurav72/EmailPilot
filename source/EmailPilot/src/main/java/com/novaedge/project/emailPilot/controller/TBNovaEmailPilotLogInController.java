@@ -9,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,10 +51,15 @@ public class TBNovaEmailPilotLogInController {
 //			  if(StringUtil.isValid(authRequest.getUsernameOrEmail())){
 //				  authRequest.setUsernameOrEmail(AESUtil.encrypt(authRequest.getUsernameOrEmail()));
 //			  }
+<<<<<<< HEAD
 //			  
 //			  String encodedPassword = passwordEncoder.encode(authRequest.getPassword());
 //			    Authentication authentication = new UsernamePasswordAuthenticationToken(authRequest.getUsernameOrEmail(), authRequest.getPassword());
 //		        authenticationManager.authenticate(authentication);
+=======
+//		        authenticationManager.authenticate(
+//		                new UsernamePasswordAuthenticationToken(authRequest.getUsernameOrEmail(), authRequest.getPassword()));
+>>>>>>> 3f4680684bd59e992944686fe33eaddf52d307fa
 //		    } catch (Exception ex) {
 //		    	
 //		    	return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ApiResponse<>(false, "Invalid credentials", null));
@@ -90,7 +94,11 @@ public class TBNovaEmailPilotLogInController {
 	        SecurityContextHolder.getContext().setAuthentication(authentication);
 
 	        // Generate the JWT token
+<<<<<<< HEAD
 	        JwtUtil1 jwtUtil = new JwtUtil1();
+=======
+	        JwtUtil jwtUtil = new JwtUtil();
+>>>>>>> 3f4680684bd59e992944686fe33eaddf52d307fa
 	        String token = jwtUtil.generateToken(authRequest.getUsernameOrEmail());
 	        TBNovaEmailPilotUserEntity usr = tBNovaEmailPilotUserDao.findByUserNameOrEmail(authRequest.getUsernameOrEmail(), authRequest.getUsernameOrEmail());
 

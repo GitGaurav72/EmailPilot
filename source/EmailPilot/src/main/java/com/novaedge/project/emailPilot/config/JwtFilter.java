@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-
+import org.springframework.security.core.userdetails.UserDetails;
 import com.novaedge.project.emailPilot.services.TBNovaEmailPilotCustUserDetailsService;
 import com.novaedge.project.emailPilot.util.JwtUtil1;
 
