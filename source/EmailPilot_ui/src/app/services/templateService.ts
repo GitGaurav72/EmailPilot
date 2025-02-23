@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class TemplateService {
-  private apiUrl = `http://localhost:8080/api/mailcontent`;
+  private apiUrl = `https://localhost:8080/api/mailcontent`;
 
   constructor(private http: HttpClient) { }
   addTemplate(template: any): Observable<any> {

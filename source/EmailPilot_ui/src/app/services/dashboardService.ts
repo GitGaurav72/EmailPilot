@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class DashboardService {
-  private apiUrl = `http://localhost:8080/api/scheduled-emails`;
+  private apiUrl = `https://localhost:8080/api/scheduled-emails`;
 
   constructor(private http: HttpClient) { }
   addTemplate(template: any): Observable<any> {

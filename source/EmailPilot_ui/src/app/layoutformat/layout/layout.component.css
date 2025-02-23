@@ -1,0 +1,70 @@
+/* Full Page Layout */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent full-page scrolling */
+  }
+  
+/* Top Navbar */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: #fdf8f8; /* Keeping the light background */
+    color: #333; /* Adjusted for better visibility */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Unified padding */
+    z-index: 1000;
+    border-bottom: 1px solid #ddd; /* Optional: Adds subtle separation */
+}
+
+  
+  /* Main Content Section */
+  .main-content {
+    display: flex;
+    flex: 1;
+    margin-top: 60px; /* Push down after top navbar */
+    margin-bottom: 50px; /* Push up before bottom navbar */
+    height: calc(100vh - 110px); /* Adjust height */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 160px;
+    background: #4b4646;
+    color: white;
+    height: 100%;
+    position: fixed;
+    top: 60px; /* Below Top Navbar */
+    left: 0;
+    bottom: 50px; /* Above Bottom Navbar */
+    overflow-y: auto; /* Allow Sidebar to Scroll */
+  }
+  
+  /* Content Area (Scrollable) */
+  .content {
+    flex: 1;
+    margin-left: 160px; /* Shift right after Sidebar */
+    padding: 20px;
+    height: calc(100vh - 110px); /* Full height minus navbars */
+    overflow-y: auto; /* Only Content Scrolls */
+  }
+  
+  /* Bottom Navbar */
+  .bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: #444;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+  }
+  
