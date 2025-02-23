@@ -56,8 +56,7 @@ export class AuthCallbackComponent implements OnInit {
     const tokenUrl = 'https://oauth2.googleapis.com/token';
     const body = new URLSearchParams({
       code: code,
-      client_id: cid,
-      client_secret: clientSecret,
+
       redirect_uri: redirectUri,
       grant_type: 'authorization_code',
     });
