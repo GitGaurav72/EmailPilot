@@ -1,0 +1,14 @@
+http://localhost:8080/api/login
+http://localhost:8080/api/login
+
+
+https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.a0AXeO80S7YDc2tLi_22X_-R0-YqCGXnM5xmuTpBGvNMgwqCc48kvJJdoQhdT5jvSrqSJt-ZG6BOuF27TPHk3ORQItMIh_Zde0wvcTm5KIRovjCpIx2kq48cCRWVn569cN-Henf9lqnqWvgkP3QNNSOTLidE9BfxvFqhIMGn2Z1QaCgYKAfASARASFQHGX2MidcZ8CjWwd7yxxKuAs-oSmQ0177
+
+
+
+
+"D:\projects\EmailPilot\source\EmailPilot_ui\key.pem"
+"D:\projects\EmailPilot\source\EmailPilot_ui\cert.pem"
+
+
+ng serve --ssl --ssl-key "D:\projects\EmailPilot\source\EmailPilot_ui\key.pem" --ssl-cert "D:\projects\EmailPilot\source\EmailPilot_ui\cert.pem"

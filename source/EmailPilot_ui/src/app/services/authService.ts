@@ -7,7 +7,7 @@ import { User, ApiResponse, LoginCredentials,LoginReposne, RegisterCredentials }
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'https://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 

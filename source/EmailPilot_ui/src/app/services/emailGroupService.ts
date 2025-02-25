@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class EmailGroupService {
-  private apiUrl = `http://localhost:8080/api/mailgroups`;
+  private apiUrl = `https://localhost:8080/api/mailgroups`;
 
   constructor(private http: HttpClient) { }
   addEmail(emailData: any): Observable<any> {

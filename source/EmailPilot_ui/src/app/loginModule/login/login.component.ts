@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { LoginCredentials, ApiResponse, LoginReposne } from '../../interfaces';
 import { AuthService } from '../../services/authService';
 import { HttpClient } from '@angular/common/http';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-login',

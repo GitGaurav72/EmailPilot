@@ -47,17 +47,35 @@ public class SecurityConfig {
 		return authProvider;
 	}
 
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//		http.cors().and().csrf().disable().authorizeHttpRequests()
+//				.requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()
+//				.anyRequest().authenticated().and().sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//		// Add JWT filter
+//		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//		return http.build();
+//	}
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().authorizeHttpRequests()
-				.requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()
-				.anyRequest().authenticated().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	    http
+	        .requiresChannel(channel -> channel.anyRequest().requiresSecure()) // Force HTTPS
+	        .cors().and().csrf().disable()
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .sessionManagement(session -> session
+	            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	        )
+	        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter
 
-		// Add JWT filter
-		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
-		return http.build();
+	    return http.build();
 	}
+
 
 }

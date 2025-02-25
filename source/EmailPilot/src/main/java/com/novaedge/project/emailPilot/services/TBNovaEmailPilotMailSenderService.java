@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.Base64;
 import java.util.Properties;
 
+import org.springframework.stereotype.Service;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -16,25 +18,27 @@ import jakarta.mail.Session;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
+@Service
 public class TBNovaEmailPilotMailSenderService {
 	
 	
-	private static String ACCESS_TOKEN = "";
+//	private static String ACCESS_TOKEN = "";
 
-	public void sendEmail(String to, String subject, String bodyText) throws Exception {
+	public void sendEmail(String accessToken, String toEmail, String subject, String body) throws Exception {
 	    NetHttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-	    JacksonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+	    @SuppressWarnings("deprecation")
+		JacksonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
 	    // Build Credential Object
-	    GoogleCredential credential = new GoogleCredential().setAccessToken(ACCESS_TOKEN);
+	    GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
 
 	    // Build Gmail Service
 	    Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
-	            .setApplicationName("EmailPilot")
+	            .setApplicationName("EmailPilot-webApp")
 	            .build();
 
 	    // Create Email
-	    MimeMessage email = createEmail(to, "me", subject, bodyText);
+	    MimeMessage email = createEmail(toEmail, "me", subject, body);
 	    Message message = createMessageWithEmail(email);
 
 	    // Send Email

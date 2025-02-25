@@ -1,0 +1,15 @@
+<nav class="top-navbar">
+    <!-- Left: Navigation Links -->
+    <div class="nav-links">
+      <a routerLink="/mailShedularDashboard">🏠 Dashboard</a>
+      <a routerLink="/profile">👤 Profile</a>
+      <a routerLink="/settings">⚙️ Settings</a>
+    </div>
+  
+    <!-- Right: Date & Logout -->
+    <div class="right-section">
+      <span class="date-time">{{ currentTime }}</span>
+      <button (click)="logout()">🚪 Logout</button>
+    </div>
+  </nav>
+  
