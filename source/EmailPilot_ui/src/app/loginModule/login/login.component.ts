@@ -51,7 +51,8 @@ export class LoginComponent {
         if (response.success) {
           console.log('Login successful!', response.data);
           localStorage.setItem('authToken', response.data?.token || '');
-          localStorage.setItem('userId', response.data?.id || ''); // Store token
+          localStorage.setItem('userId', response.data?.id || ''); 
+          localStorage.setItem('firstname', response.data?.firstname || '');// Store token
           this.router.navigate(['/mailShedularDashboard']);
         } else {
           console.error('Login failed:', response.message);

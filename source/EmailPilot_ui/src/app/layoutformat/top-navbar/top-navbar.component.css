@@ -1,58 +1,132 @@
-/* Top Navbar */
+/* Navbar */
 .top-navbar {
-    position: fixed;
-    top: 0;
-    width: 98%;
-    height: 60px;
-    background: #1a73e8; /* Keeping the light background */
-    color: #333; /* Adjusted for better visibility */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px; 
-    z-index: 1000;
-    border-bottom: 1px solid #ddd; /* Optional: Adds subtle separation */
+  position: fixed;
+  top: 0;
+  width: 98%;
+  height: 60px;
+  background: #1a73e8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
 }
 
-  
-  /* Navigation Links */
-  .nav-links {
-    margin-left: 40%;
-    display: flex;
-    gap: 20px;
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
-  }
+.logo-img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Right Section */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.username {
   
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-  }
+  font-size: 16px;
   
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Right Section (Date & Logout) */
-  .right-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .date-time {
-    font-size: 14px;
-  }
-  
-  button {
-    background: rgb(119, 111, 111);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: darkred;
-  }
-  
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  color: black;
+  width: 180px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px 0;
+}
+
+.dropdown-menu a {
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+  background: #f1f1f1;
+}
+
+.dropdown-menu hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 5px 0;
+}
+
+/* Login Button */
+.login-btn {
+  background: #fff;
+  color: #1a73e8;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.login-btn:hover {
+  background: #d6e4ff;
+}
+
+/* Logout Button */
+.dropdown-menu a:last-child {
+  color: red;
+  font-weight: bold;
+}

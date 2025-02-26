@@ -1,0 +1,12 @@
+<!-- Notification Popup -->
+<div class="notification-popup" *ngIf="notificationService.showNotifications$ | async">
+    <div class="notification-header">
+      <h3>Notifications</h3>
+      <button (click)="notificationService.closeNotifications()" class="close-btn">&times;</button>
+    </div>
+    <div class="notification-list">
+      <div *ngFor="let notification of notifications" class="notification-item">
+        {{ notification }}
+      </div>
+    </div>
+  </div>

@@ -12,3 +12,13 @@ https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=ya29.a0AXeO80S7YDc2t
 
 
 ng serve --ssl --ssl-key "D:\projects\EmailPilot\source\EmailPilot_ui\key.pem" --ssl-cert "D:\projects\EmailPilot\source\EmailPilot_ui\cert.pem"
+
+
+
+
+
+
+
+
+
+ng serve --ssl --ssl-key "D:\project\EmailPilot\source\EmailPilot_ui\key.pem" --ssl-cert "D:\project\EmailPilot\source\EmailPilot_ui\cert.pem"

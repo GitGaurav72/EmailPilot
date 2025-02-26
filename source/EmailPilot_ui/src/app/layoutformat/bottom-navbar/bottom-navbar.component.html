@@ -1,6 +1,40 @@
-<nav class="bottom-nav">
-    <a routerLink="/composeEmail">📩 Email</a>
-    <a routerLink="/analytics">📊 Analytics</a>
-    <a routerLink="/dashboard">🏠 Dashboard</a>
-    <a routerLink="/template">📜 Templates</a>
-  </nav>
+<footer class="footer">
+  <div class="footer-content">
+    <!-- Section 1: EmailPilot Links -->
+    <div class="footer-section">
+      <h4>EmailPilot</h4>
+      <ul>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/features">Features</a></li>
+        <li><a routerLink="/pricing">Pricing</a></li>
+        <li><a routerLink="/support">Support</a></li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Legal Links -->
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <ul>
+        <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+        <li><a routerLink="/terms-of-service">Terms of Service</a></li>
+        <li><a routerLink="/cookie-policy">Cookie Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Social Media Links -->
+    <div class="footer-section">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright Section -->
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} EmailPilot. All rights reserved.</p>
+  </div>
+</footer>

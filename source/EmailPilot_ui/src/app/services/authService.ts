@@ -25,4 +25,10 @@ export class AuthService {
   }
   
 
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('authToken'); // Replace 'authToken' with your actual token key
+    return token !== null && token !== undefined;
+}
+
+
 }

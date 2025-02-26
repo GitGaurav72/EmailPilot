@@ -16,6 +16,10 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { AppComponent } from './app.component'; // ✅ Ensure AppComponent is imported
 import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure AuthInterceptor is imported
+import { faFacebook, faTwitter, faLinkedin, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure 
     MatPaginatorModule,
     MatSnackBarModule,
     MatButtonModule,
+    FontAwesomeModule,
     OAuthModule.forRoot({
       resourceServer: {
         allowedUrls: ['http://your-backend-api'],
@@ -49,8 +54,14 @@ import { AuthInterceptor } from './interceptor/auth.interceptor'; // ✅ Ensure 
 
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },      // ✅ Enable hash-based routing globally
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    { provide: OAuthStorage, useValue: localStorage }, // ✅ Add AuthInterceptor
+    { provide: OAuthStorage, useValue: localStorage },
+    NotificationService // ✅ Add AuthInterceptor
   ],
   bootstrap: [] // ✅ Ensure AppComponent is bootstrapped
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor() {
+    library.add(faFacebook, faTwitter, faLinkedin, faInstagram);
+  }
+ }

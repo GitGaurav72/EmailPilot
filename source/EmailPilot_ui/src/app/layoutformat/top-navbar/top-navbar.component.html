@@ -1,15 +1,40 @@
 <nav class="top-navbar">
-    <!-- Left: Navigation Links -->
-    <div class="nav-links">
-      <a routerLink="/mailShedularDashboard">🏠 Dashboard</a>
-      <a routerLink="/profile">👤 Profile</a>
-      <a routerLink="/settings">⚙️ Settings</a>
-    </div>
-  
-    <!-- Right: Date & Logout -->
-    <div class="right-section">
-      <span class="date-time">{{ currentTime }}</span>
-      <button (click)="logout()">🚪 Logout</button>
-    </div>
-  </nav>
-  
+  <div class="logo">
+      <img src="../../assets/images/logo.PNG" alt="EmailPilot Logo" class="logo-img"> EmailPilot
+  </div>
+
+  <div class="right-section">
+      <div class="nav-links">
+          <a routerLink="/mailShedularDashboard"><span class="material-symbols-outlined">
+            home
+            </span></a>
+          <a routerLink="/profile"><span class="material-symbols-outlined">
+            settings
+            </span></a>
+            
+            <a (click)="notificationService.toggleNotifications()">
+              <span class="material-symbols-outlined">notifications</span>
+            </a>
+          
+      </div>
+
+      <!-- Logged-in user details -->
+      <div class="user-profile" *ngIf="isLoggedIn">
+          <img src="{{ userProfilePic }}" alt="User Profile" class="profile-img" (click)="toggleDropdown()" />
+          <div class="username">{{ userName }}</div>
+
+          <!-- Dropdown menu -->
+          <div class="dropdown-menu" *ngIf="dropdownOpen">
+              <a routerLink="/profile">Profile</a>
+              <a routerLink="/settings">Settings</a>
+              <a routerLink="/my-emails">My Emails</a>
+              <a routerLink="/help">Help & Support</a>
+              <hr />
+              <a (click)="logout()">Logout</a>
+          </div>
+      </div>
+
+      <!-- Login Button (If Not Logged In) -->
+      <button *ngIf="!isLoggedIn" class="login-btn" (click)="login()">Login</button>
+  </div>
+</nav>

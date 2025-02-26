@@ -1,9 +1,29 @@
 <nav>
     <ul>
-      <li><a routerLink="/dashboard">Dashboard</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-      <li><a routerLink="/settings">Settings</a></li>
-      <li><a routerLink="/logout">Logout</a></li>
+      <li>
+        <div class="icon-title-container">
+          <span class="material-symbols-outlined">identity_platform</span>
+          <a routerLink="/emailList/{{userId}}">EmailId</a>
+        </div>
+      </li>
+      <li>
+        <div class="icon-title-container">
+          <span class="material-symbols-outlined">groups_3</span>
+          <a routerLink="/emailGroup/{{userId}}">Email Groups</a>
+      </div>
+    </li>
+      <li>
+        <div class="icon-title-container">
+        <span class="material-symbols-outlined">article</span>
+        <a routerLink="/templateList/{{userId}}">Email Template</a>
+      </div>
+      </li>
+      <li>
+        <div class="icon-title-container">
+        <span class="material-symbols-outlined">calendar_clock</span>
+        <a routerLink="/Sheduled_Emails">Sheduled Emails</a>
+      </div>
+      </li>
     </ul>
   </nav>
-  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
