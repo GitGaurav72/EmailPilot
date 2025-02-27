@@ -66,7 +66,7 @@ public class SecurityConfig {
 	        .requiresChannel(channel -> channel.anyRequest().requiresSecure()) // Force HTTPS
 	        .cors().and().csrf().disable()
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()
+	            .requestMatchers("/", "/index","/api/register", "/api/login", "/api/users/", "/auth/google/callback").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .sessionManagement(session -> session
