@@ -31,7 +31,7 @@ export class LoginComponent {
 
   loginWithGoogle() {
     const clientId = '480994039355-onmo5u45ouohmps41i0f8riq2g9hq0v6.apps.googleusercontent.com';
-    const redirectUri = 'http://localhost:4200/auth/callback'; // Ensure this is registered in Google Console
+    const redirectUri = 'https://emailpilot.duckdns.org:8443/emailpilot/auth/callback'; // Ensure this is registered in Google Console
     const scope = 'openid email profile';
     const responseType = 'code';
     const responseMode = 'query';
@@ -70,7 +70,7 @@ export class LoginComponent {
   }
 
   sendAuthCodeToBackend(authCode: string) {
-    const backendUrl = 'http://localhost:8080/auth/google/callback';
+    const backendUrl = 'https://emailpilot.duckdns.org:8443/emailPilot_api/auth/google/callback';
     this.http.post(backendUrl, { code: authCode })
       .subscribe(
         (response: any) => {

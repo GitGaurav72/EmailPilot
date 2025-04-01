@@ -1,49 +1,68 @@
 <div class="container">
-    <div class="header">
-      <button mat-button color="primary" routerLink="/email/add">➕ Add New Email</button>
-      <input type="file" (change)="onFileUpload($event, 'excel')" accept=".xlsx, .xls" hidden #excelUpload />
-      <button mat-button color="accent" (click)="excelUpload.click()">📂 Upload Excel</button>
-      
-      <input type="file" (change)="onFileUpload($event, 'pdf')" accept=".pdf" hidden #pdfUpload />
-      <button mat-button color="warn" (click)="pdfUpload.click()">📄 Upload PDF</button>
-    </div>
-  
-    <table mat-table [dataSource]="emails" class="mat-elevation-z8">
-      <ng-container matColumnDef="emailId">
-        <th mat-header-cell *matHeaderCellDef> Email ID </th>
-        <td mat-cell *matCellDef="let email"> {{ email.mId }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let email"> {{ this.aesService.decrypt(email.mailId) }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="hr">
-        <th mat-header-cell *matHeaderCellDef> HR </th>
-        <td mat-cell *matCellDef="let email"> {{ email.hrName }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="companyName">
-        <th mat-header-cell *matHeaderCellDef> Company Name </th>
-        <td mat-cell *matCellDef="let email"> {{ email.cmpnyNm }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef> Created At </th>
-        <td mat-cell *matCellDef="let email"> {{ email.addTs | date:'short' }} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="updatedAt">
-        <th mat-header-cell *matHeaderCellDef> Updated At </th>
-        <td mat-cell *matCellDef="let email"> {{ email.updtTs | date:'short' }} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt'];"></tr>
-    </table>
-  
-    <mat-paginator [length]="totalEmails" [pageSize]="itemsPerPage" (page)="onPageChange($event.pageIndex + 1)">
-    </mat-paginator>
+  <h2 class="header">Emails List</h2>
+  <div class="header">
+    <button mat-button color="primary" routerLink="/email/add">➕ Add New Email</button>
+    <input type="file" (change)="onFileUpload($event, 'excel')" accept=".xlsx, .xls" hidden #excelUpload />
+    <button mat-button color="accent" (click)="excelUpload.click()">📂 Upload Excel</button>
+
+    <input type="file" (change)="onFileUpload($event, 'pdf')" accept=".pdf" hidden #pdfUpload />
+    <button mat-button color="warn" (click)="pdfUpload.click()">📄 Upload PDF</button>
   </div>
-  
+
+  <table mat-table [dataSource]="emails" class="mat-elevation-z8">
+    <ng-container matColumnDef="emailId">
+      <th mat-header-cell *matHeaderCellDef> Email ID </th>
+      <td mat-cell *matCellDef="let email"> {{ email.mId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let email"> {{ this.aesService.decrypt(email.mailId) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hr">
+      <th mat-header-cell *matHeaderCellDef> HR </th>
+      <td mat-cell *matCellDef="let email"> {{ email.hrName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef> Company Name </th>
+      <td mat-cell *matCellDef="let email"> {{ email.cmpnyNm }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef> Created At </th>
+      <td mat-cell *matCellDef="let email"> {{ email.addTs | date:'short' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedAt">
+      <th mat-header-cell *matHeaderCellDef> Updated At </th>
+      <td mat-cell *matCellDef="let email"> {{ email.updtTs | date:'short' }} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let email" class="action-buttons">
+        <!-- Edit Icon -->
+        <button mat-icon-button color="primary" (click)="onEdit(email)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <!-- View Icon -->
+        <button mat-icon-button color="accent" (click)="onView(email)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <!-- Delete Icon -->
+        <button mat-icon-button color="warn" (click)="onDelete(email)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['emailId', 'email', 'hr', 'companyName', 'createdAt', 'updatedAt', 'actions'];"></tr>
+  </table>
+
+  <mat-paginator [length]="totalEmails" [pageSize]="itemsPerPage" (page)="onPageChange($event.pageIndex + 1)">
+  </mat-paginator>
+</div>

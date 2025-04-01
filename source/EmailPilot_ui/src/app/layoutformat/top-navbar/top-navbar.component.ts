@@ -31,7 +31,7 @@ export class TopNavbarComponent {
   }
   isLoggedIn: boolean = false;
   dropdownOpen: boolean = false;
-  userProfilePic: string = '../../assets/images/logo.PNG';
+  userProfilePic: string = 'assets/images/logo.PNG';
   userName: string = 'John Doe'; // This should be dynamically set from user data
 
   constructor(private authService: AuthService, private router : Router, public notificationService: NotificationService) {

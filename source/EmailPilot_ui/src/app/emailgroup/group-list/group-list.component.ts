@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { AesDecryptService } from '../../services/aes.service';
 import { AddEmailGroupDialogComponent } from '../add-email-group-dialog/add-email-group-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-group-list',
@@ -23,6 +24,7 @@ import { MatDialog } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './group-list.component.html',
   styleUrl: './group-list.component.css'
@@ -105,6 +107,23 @@ export class GroupListComponent implements OnInit {
           this.snackBar.open(`Failed to upload ${fileType}`, 'Close', { duration: 3000 });
         }
       );
+    }
+  }
+
+  editEmailGroup(email: any) {
+    console.log('Edit Email Group:', email);
+    // Your logic to open edit dialog
+  }
+  
+  viewEmailGroup(email: any) {
+    console.log('View Email Group:', email);
+    // Your logic to open view dialog or page
+  }
+  
+  deleteEmailGroup(id: string) {
+    if (confirm('Are you sure you want to delete this email group?')) {
+      console.log('Deleting Group ID:', id);
+      // Your delete API call logic here
     }
   }
 }

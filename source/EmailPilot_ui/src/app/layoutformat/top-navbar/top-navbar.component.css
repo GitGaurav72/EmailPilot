@@ -1,4 +1,5 @@
 /* Navbar */
+/* Top Navbar */
 .top-navbar {
   position: fixed;
   top: 0;
@@ -18,14 +19,30 @@
 .logo {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
+  overflow: visible; /* Ensure text is not hidden */
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white; /* Ensure text is visible */
 }
 
 .logo-img {
   width: 40px;
   height: auto;
   margin-right: 10px;
+}
+
+.logo-link span {
+  display: inline-block; /* Ensure it behaves as a block element */
+  color: inherit; /* Inherit color from parent */
+  font-size: 1.5rem; /* Match the logo font size */
+  line-height: 1.5; /* Ensure proper spacing */
 }
 
 /* Navigation Links */
@@ -38,13 +55,11 @@
   color: white;
   text-decoration: none;
   font-size: 16px;
-
 }
 
 .nav-links a:hover {
   text-decoration: underline;
 }
-
 /* Right Section */
 .right-section {
   display: flex;

@@ -3,7 +3,7 @@ import { EmailService } from '../../services/emailService';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { AesDecryptService } from '../../services/aes.service';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -23,7 +24,8 @@ import { AesDecryptService } from '../../services/aes.service';
     MatTableModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatButtonModule],
+    MatButtonModule,
+    MatIconModule ],
   templateUrl: './email-list.component.html',
   styleUrl: './email-list.component.css'
 })
@@ -73,5 +75,23 @@ export class EmailListComponent implements OnInit {
       );
     }
   }
+
+  onEdit(email: any): void {
+    console.log('Edit:', email);
+    // Navigate to the edit page or open a modal
+  }
+  
+  onView(email: any): void {
+    console.log('View:', email);
+    // Open a view modal or navigate to the details page
+  }
+  
+  onDelete(email: any): void {
+    if (confirm(`Are you sure you want to delete this email (${email.mailId})?`)) {
+      // Handle delete action
+      console.log('Deleted:', email);
+    }
+  }
+  
 
 }

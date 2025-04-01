@@ -14,6 +14,7 @@ import { AesDecryptService } from '../../services/aes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TemplateService } from '../../services/templateService';
 import { AddTemplateDialogComponent } from '../../add-template-dialog/add-template-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-templt-list',
@@ -24,7 +25,8 @@ import { AddTemplateDialogComponent } from '../../add-template-dialog/add-templa
       MatTableModule,
       MatPaginatorModule,
       MatSnackBarModule,
-      MatButtonModule
+      MatButtonModule,
+      MatIconModule
   ],
   templateUrl: './templt-list.component.html',
   styleUrl: './templt-list.component.css'
@@ -108,4 +110,21 @@ export class TempltListComponent implements OnInit{
       }
     );
   }
+  editTemplate(template: any) {
+    console.log('Edit Template:', template);
+    // Your logic to open edit dialog
+  }
+  
+  viewTemplate(template: any) {
+    console.log('View Template:', template);
+    // Your logic to open view dialog or page
+  }
+  
+  deleteTemplate(id: string) {
+    if (confirm('Are you sure you want to delete this template?')) {
+      console.log('Deleting Template ID:', id);
+      // Your delete API call logic here
+    }
+  }
+  
 }

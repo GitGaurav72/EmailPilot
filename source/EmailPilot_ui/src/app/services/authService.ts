@@ -7,7 +7,7 @@ import { User, ApiResponse, LoginCredentials,LoginReposne, RegisterCredentials }
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:8080/api';
+  private apiUrl = 'https://65.0.199.14:8443/emailPilot_api/api';
 
   constructor(private http: HttpClient) {}
 

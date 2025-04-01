@@ -1,0 +1,1 @@
+ng serve --ssl --ssl-key "D:\project\EmailPilot\source\EmailPilot_ui\key.pem" --ssl-cert "D:\project\EmailPilot\source\EmailPilot_ui\cert.pem"

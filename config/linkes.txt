@@ -22,3 +22,29 @@ ng serve --ssl --ssl-key "D:\projects\EmailPilot\source\EmailPilot_ui\key.pem" -
 
 
 ng serve --ssl --ssl-key "D:\project\EmailPilot\source\EmailPilot_ui\key.pem" --ssl-cert "D:\project\EmailPilot\source\EmailPilot_ui\cert.pem"
+
+
+
+
+
+
+
+
+https://localhost:8080/api/mailSender/oauht/callback
+
+https://localhost:4200/auth/callback
+
+
+https://localhost:8443/emailPilot_api/auth/google/callback
+
+
+ng build --configuration=production --base-href /emailpilot/ --deploy-url /emailpilot/
+
+
+
+/opt/tomcat/apache-tomcat-10.1.36/logs/
+
+cd /opt/tomcat/apache-tomcat-10.1.36/bin/
+
+
+tail -f /opt/tomcat/apache-tomcat-10.1.36/logs/catalina.out

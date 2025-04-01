@@ -1,0 +1,107 @@
+<div class="container">
+ 
+    <h2 class="header">Scheduled Email List</h2>
+    <table mat-table [dataSource]="sheduledEmails" class="mat-elevation-z8">
+      
+      <!-- Group ID -->
+      <ng-container matColumnDef="groupId">
+        <th mat-header-cell *matHeaderCellDef> Group ID </th>
+        <td mat-cell *matCellDef="let email"> {{ email.groupName }} </td>
+      </ng-container>
+  
+      <!-- Email Template -->
+      <ng-container matColumnDef="emailTemplate">
+        <th mat-header-cell *matHeaderCellDef> Email Template </th>
+        <td mat-cell *matCellDef="let email"> {{ email.templateName }} </td>
+      </ng-container>
+  
+      <!-- Scheduled Time -->
+      <ng-container matColumnDef="scheduledTime">
+        <th mat-header-cell *matHeaderCellDef> Scheduled Time </th>
+        <td mat-cell *matCellDef="let email"> {{ email.scheduledTime | date:'short' }} </td>
+      </ng-container>
+  
+      <!-- Time Zone -->
+      <ng-container matColumnDef="timeZone">
+        <th mat-header-cell *matHeaderCellDef> Time Zone </th>
+        <td mat-cell *matCellDef="let email"> {{ email.timeZone }} </td>
+      </ng-container>
+  
+      <!-- Created Time -->
+      <ng-container matColumnDef="createdTime">
+        <th mat-header-cell *matHeaderCellDef> Created Time </th>
+        <td mat-cell *matCellDef="let email"> {{ email.crtTm | date:'short' }} </td>
+      </ng-container>
+  
+      <!-- Updated Time -->
+      <ng-container matColumnDef="updatedTime">
+        <th mat-header-cell *matHeaderCellDef> Updated Time </th>
+        <td mat-cell *matCellDef="let email"> {{ email.uptTm | date:'short' }} </td>
+      </ng-container>
+  
+      <!-- Schedule Daily -->
+      <ng-container matColumnDef="scheduleDaily">
+        <th mat-header-cell *matHeaderCellDef> Schedule Daily </th>
+        <td mat-cell *matCellDef="let email"> {{ email.scheduleDaily === 'Y' ? 'Yes' : 'No' }} </td>
+      </ng-container>
+  
+      <!-- Schedule Daily Time -->
+      <ng-container matColumnDef="scheduleDailyTime">
+        <th mat-header-cell *matHeaderCellDef> Schedule Daily Time </th>
+        <td mat-cell *matCellDef="let email"> {{ email.scheduleDailyTime }} </td>
+      </ng-container>
+  
+      <!-- ✅ Actions Column (Edit, View, Delete) -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let email">
+          <!-- Edit Button -->
+          <button mat-icon-button color="primary" (click)="editEmail(email)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <!-- View Button -->
+          <button mat-icon-button color="accent" (click)="viewEmail(email)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <!-- Delete Button -->
+          <button mat-icon-button color="warn" (click)="deleteEmail(email.groupId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <!-- Table Headers and Rows -->
+      <tr mat-header-row *matHeaderRowDef="[
+          'groupId', 
+          'emailTemplate', 
+          'scheduledTime', 
+          'timeZone', 
+          'createdTime', 
+          'updatedTime', 
+          'scheduleDaily', 
+          'scheduleDailyTime',
+          'actions'
+        ]">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: [
+          'groupId', 
+          'emailTemplate', 
+          'scheduledTime', 
+          'timeZone', 
+          'createdTime', 
+          'updatedTime', 
+          'scheduleDaily', 
+          'scheduleDailyTime',
+          'actions'
+        ];">
+      </tr>
+    </table>
+  
+    <!-- ✅ Pagination -->
+    <mat-paginator 
+      [length]="totalEmails" 
+      [pageSize]="itemsPerPage" 
+      (page)="onPageChange($event.pageIndex + 1)">
+    </mat-paginator>
+  </div>
+  

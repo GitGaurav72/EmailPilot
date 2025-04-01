@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class EmailGroupService {
-  private apiUrl = `https://localhost:8080/api/mailgroups`;
+  private apiUrl = `https://65.0.199.14:8443/emailPilot_api/api/mailgroups`;
 
   constructor(private http: HttpClient) { }
   addEmail(emailData: any): Observable<any> {
@@ -18,6 +18,10 @@ export class EmailGroupService {
     return this.http.get(`${this.apiUrl}/usrid/${userId}?page=${page}&size=${size}`);
   }
 
+  getEmailGruoupId( id : string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+  
   addEmailGroup(emailGrp: any): Observable<any> {
     return this.http.post(`${this.apiUrl}`, emailGrp);
   }

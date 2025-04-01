@@ -1,0 +1,91 @@
+<div class="modal-backdrop" *ngIf="isModalOpen" (click)="closeModal()"></div>
+
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-header">
+    <h2>Terms of Service and Privacy Policy</h2>
+    <button (click)="closeModal()" class="close-btn">✖</button>
+  </div>
+
+  <div class="modal-body">
+    <h3>Introduction</h3>
+    <p>
+      Welcome to EmailPilot. By using our services, you agree to these terms and conditions.
+      Please read them carefully.
+    </p>
+
+    <h3>1. Acceptance of Terms</h3>
+    <p>
+      By accessing or using the platform, you agree to comply with these terms and all applicable laws.
+    </p>
+
+    <h3>2. User Obligations</h3>
+    <p>
+      You must provide accurate and complete information when registering and keep your account details secure.
+    </p>
+
+    <h3>3. Privacy Policy</h3>
+    <p>
+      We collect personal information to provide better services. For more details, please see our
+      <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+    </p>
+
+    <h3>4. Prohibited Activities</h3>
+    <ul>
+      <li>You may not engage in unlawful or harmful activities on the platform.</li>
+      <li>You may not interfere with the platform's security or performance.</li>
+    </ul>
+
+    <h3>5. Limitation of Liability</h3>
+    <p>
+      We are not liable for any direct, indirect, or consequential damages arising from the use of our services.
+    </p>
+
+    <h3>6. Termination</h3>
+    <p>
+      We reserve the right to terminate or suspend your account for violating these terms.
+    </p>
+
+    <h3>7. Changes to Terms</h3>
+    <p>
+      We may update these terms from time to time. Continued use of the platform constitutes acceptance of changes.
+    </p>
+
+    <h3>8. Google API Usage</h3>
+    <p>
+      EmailPilot uses Google APIs to access your Gmail account for the purpose of scheduling and sending emails. By using our services, you agree to the following:
+    </p>
+    <ul>
+      <li>We will access your Gmail account to read, compose, send, and manage emails on your behalf.</li>
+      <li>We will only use your data for the purposes outlined in this policy and will not share it with third parties without your consent.</li>
+      <li>You can revoke our access to your Gmail account at any time through your Google account settings.</li>
+    </ul>
+
+    <h3>9. Data Security</h3>
+    <p>
+      We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure. We strive to use commercially acceptable means to protect your personal information, but we cannot guarantee its absolute security.
+    </p>
+
+    <h3>10. Third-Party Services</h3>
+    <p>
+      We use Google APIs to access your Gmail account. By using EmailPilot, you agree to Google’s <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> and <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a>.
+    </p>
+
+    <h3>11. User Consent</h3>
+    <p>
+      By using EmailPilot, you consent to:
+    </p>
+    <ul>
+      <li>The collection and use of your information as described in this policy.</li>
+      <li>The access and management of your Gmail account for email scheduling purposes.</li>
+    </ul>
+
+    <h3>12. Contact Us</h3>
+    <p>
+      If you have any questions about these terms or our privacy practices, please contact us at <a href="mailto:emailpilot1@gmail.com">emailpilot1&#64;gmail.com</a>..
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="closeModal()" class="cancel-btn">Close</button>
+  </div>
+</div>

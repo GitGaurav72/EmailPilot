@@ -1,29 +1,50 @@
 <div class="register-container">
-    <h2>Register</h2>
-    <form (ngSubmit)="onRegister()">
-       <div class = "flex">
+  <h2>Register</h2>
+  <form (ngSubmit)="onRegister()">
+    <div class="flex">
       <div class="form-group">
-        <label for="name">First Name</label>
-        <input type="text" id="fname" name="name" [(ngModel)]="Credentials.firstName" required>
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" [(ngModel)]="Credentials.firstName" required>
       </div>
       <div class="form-group">
-        <label for="name">Last Name</label>
-        <input type="text" id="lname" name="name" [(ngModel)]="Credentials.lastName" required>
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" [(ngModel)]="Credentials.lastName" required>
       </div>
     </div>
+    
     <div class="form-group">
-        <label for="name">User Name</label>
-        <input type="text" id="uname" name="name" [(ngModel)]="Credentials.userName" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" [(ngModel)]="Credentials.email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="Credentials.password" required>
-      </div>
-      <button type="submit" class="register-button">Register</button>
-    </form>
-    <p>Already have an account? <a routerLink="/login">Login here</a>.</p>
-  </div>
+      <label for="uname">User Name</label>
+      <input type="text" id="uname" name="uname" [(ngModel)]="Credentials.userName" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="Credentials.email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="Credentials.password" required>
+    </div>
+
+  <!-- Privacy Policy Checkbox -->
+<div class="form-group checkbox-group">
+  <input type="checkbox" id="agree" [(ngModel)]="agreeToTerms" name="agreeToTerms" required>
+  <label for="agree">
+    I agree to the 
+    <a href="#" (click)="privacyPolicy.openModal(); $event.preventDefault()">Privacy Policy</a> and 
+    <a href="#" (click)="termsOfService.openModal(); $event.preventDefault()">Terms of Service</a>
+  </label>
+</div>
+
+<!-- Modal Components -->
+<app-privacy-policy #privacyPolicy></app-privacy-policy>
+<app-terms-of-service #termsOfService></app-terms-of-service>
+
+    
+
+    <button type="submit" class="register-button" [disabled]="!agreeToTerms">Register</button>
+  </form>
+  
+  <p>Already have an account? <a routerLink="/login">Login here</a>.</p>
+</div>

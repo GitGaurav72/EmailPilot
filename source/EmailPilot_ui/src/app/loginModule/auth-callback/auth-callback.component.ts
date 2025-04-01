@@ -29,61 +29,61 @@ export class AuthCallbackComponent implements OnInit {
     }
   }
 
-  // exchangeCodeForToken(code: string) {
-  //   const backendUrl = 'http://localhost:8080/auth/google/callback';
-
-  //   this.http.post(backendUrl, { code }).subscribe({
-  //     next: (response: any) => {
-  //       console.log('Token exchange successful', response);
-
-  //       // Store token and navigate to dashboard
-  //       localStorage.setItem('authToken', response.token);
-  //       localStorage.setItem('userId', response.userId);
-  //       this.router.navigate(['/mailShedularDashboard']);
-  //     },
-  //     error: (error) => {
-  //       console.error('Token exchange failed', error);
-  //       this.router.navigate(['/login']);
-  //     },
-  //   });
-  // }
-
-
   exchangeCodeForToken(code: string) {
-  
-    const redirectUri = 'http://localhost:4200/auth/callback';
+    const backendUrl = 'https://emailpilot.duckdns.org:8443/emailPilot_api/auth/google/callback';
 
-    const tokenUrl = 'https://oauth2.googleapis.com/token';
-    const body = new URLSearchParams({
-      code: code,
+    this.http.post(backendUrl, { code }).subscribe({
+      next: (response: any) => {
+        console.log('Token exchange successful', response);
 
-      redirect_uri: redirectUri,
-      grant_type: 'authorization_code',
-    });
-
-    this.http.post(tokenUrl, body.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    }).subscribe(
-      (response: any) => {
-        const accessToken = response.access_token;
-        const refreshToken = response.refresh_token; // Only if you requested offline access
-        console.log('Access Token:', accessToken);
-        console.log('Refresh Token:', refreshToken);
-
-        // Store the tokens securely (e.g., in localStorage or a backend service)
-        localStorage.setItem('access_token', accessToken);
-        if (refreshToken) {
-          localStorage.setItem('refresh_token', refreshToken);
-        }
-
-        // Redirect to home or another page
-        this.router.navigate(['/']);
+        // Store token and navigate to dashboard
+        localStorage.setItem('authToken', response.token);
+        localStorage.setItem('userId', response.userId);
+        this.router.navigate(['/mailShedularDashboard']);
       },
-      (error) => {
-        console.error('Error exchanging code for token:', error);
-        this.router.navigate(['/']); // Redirect to home on error
-      }
-    );
+      error: (error) => {
+        console.error('Token exchange failed', error);
+        this.router.navigate(['/login']);
+      },
+    });
   }
+
+
+  // exchangeCodeForToken(code: string) {
+  
+  //   const redirectUri = 'http://35.154.32.157:4200/auth/callback';
+
+  //   const tokenUrl = 'https://oauth2.googleapis.com/token';
+  //   const body = new URLSearchParams({
+  //     code: code,
+
+  //     redirect_uri: redirectUri,
+  //     grant_type: 'authorization_code',
+  //   });
+
+  //   this.http.post(tokenUrl, body.toString(), {
+  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //   }).subscribe(
+  //     (response: any) => {
+  //       const accessToken = response.access_token;
+  //       const refreshToken = response.refresh_token; // Only if you requested offline access
+  //       console.log('Access Token:', accessToken);
+  //       console.log('Refresh Token:', refreshToken);
+
+  //       // Store the tokens securely (e.g., in localStorage or a backend service)
+  //       localStorage.setItem('access_token', accessToken);
+  //       if (refreshToken) {
+  //         localStorage.setItem('refresh_token', refreshToken);
+  //       }
+
+  //       // Redirect to home or another page
+  //       this.router.navigate(['/']);
+  //     },
+  //     (error) => {
+  //       console.error('Error exchanging code for token:', error);
+  //       this.router.navigate(['/']); // Redirect to home on error
+  //     }
+  //   );
+  // }
   
 }

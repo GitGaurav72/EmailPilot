@@ -59,7 +59,7 @@ public class GoogleAuthController {
             params.add("code", code.get("code"));
             params.add("client_id", clientId);
             params.add("client_secret", clientSecret);
-            params.add("redirect_uri", "http://localhost:4200/auth/callback");
+            params.add("redirect_uri", "https://emailpilot.duckdns.org:8443/emailpilot/auth/callback");
             params.add("grant_type", "authorization_code");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

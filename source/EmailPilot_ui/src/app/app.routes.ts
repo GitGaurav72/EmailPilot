@@ -66,12 +66,18 @@ import { AddEmailComponent } from './email/add-email/add-email.component';
 import { EmailListComponent } from './email/email-list/email-list.component';
 import { GroupListComponent } from './emailgroup/group-list/group-list.component';
 import { TempltListComponent } from './emaiTemplate/templt-list/templt-list.component';
+import { PrivacyPolicyComponent } from './loginModule/privacy-policy/privacy-policy.component';
+import { TermsOfServiceComponent } from './loginModule/terms-of-service/terms-of-service.component';
+import { SheduledEmailComponent } from './sheduled-email/sheduled-email.component';
 
 export const routes: Routes = [
     // Routes outside LayoutComponent
     { path: '', component: HomeComponent }, // Home Page
     { path: 'login', component: LoginComponent }, // Login Page
     { path: 'register', component: SigninComponent }, // Register Page
+    { path: 'legal/privacy-policy', component: PrivacyPolicyComponent},
+    { path: 'legal/terms-of-service', component: TermsOfServiceComponent},
+    
 
     // Routes inside LayoutComponent
     {
@@ -87,6 +93,7 @@ export const routes: Routes = [
             { path: 'emailGroup/:usrid', component: GroupListComponent },
             { path: 'emailList/:usrid', component: EmailListComponent },
             { path: 'templateList/:usrid', component: TempltListComponent },
+            { path: 'Sheduled_Emails/:usrid', component : SheduledEmailComponent}
         ]
     },
 

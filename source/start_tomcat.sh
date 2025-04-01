@@ -1,0 +1,1 @@
+bash sh /opt/tomcat/apache-tomcat-10.1.36/bin/startup.sh

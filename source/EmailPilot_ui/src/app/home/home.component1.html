@@ -1,0 +1,108 @@
+<div class="home-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a routerLink="/home" class="logo-link">
+        <img src="../../assets/images/logo.PNG" alt="EmailPilot Logo" class="logo-img" />
+        <span class="logo-text">EmailPilot</span>
+      </a>
+    </div>
+
+    <div class="hamburger" (click)="toggleMenu()">☰</div>
+
+    <!-- Center nav links when user is not logged in -->
+    <nav [ngClass]="{'nav': true, 'center-nav': !isLoggedIn}">
+      <a routerLink="/" class="nav-link active">Home</a>
+      <a routerLink="/scheduled-emails" class="nav-link">Scheduled Emails</a>
+      <a routerLink="/template" class="nav-link">Templates</a>
+      <a routerLink="/analytics" class="nav-link">Analytics</a>
+      <a routerLink="/settings" class="nav-link">Settings</a>
+      <a routerLink="/login" *ngIf="!isLoggedIn" class="nav-link">Login</a>
+    </nav>
+
+    <!-- User profile section -->
+    <div class="user-profile" *ngIf="isLoggedIn">
+      <img src="{{ userProfilePic }}" alt="User Profile" class="profile-img" (click)="toggleDropdown()" />
+      <div class="username">{{ userName }}</div>
+
+      <!-- Dropdown menu -->
+      <div class="dropdown-menu" *ngIf="dropdownOpen">
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/settings">Settings</a>
+        <a routerLink="/my-emails">My Emails</a>
+        <a routerLink="/help">Help & Support</a>
+        <hr />
+        <a (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to EmailPilot</h1>
+      <p>Your ultimate solution for scheduling and managing emails effortlessly.</p>
+      <div class="hero-actions">
+        <button class="hero-button" (click)="composeEmail()">Compose New Email</button>
+        <button class="hero-button outline" (click)="viewScheduledEmails()">View Scheduled Emails</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/images/slide1.jpg" style="height: 200px;" alt="Email Illustration" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <h2>About EmailPilot</h2>
+    <p>
+      EmailPilot helps you manage and schedule your emails efficiently. Our platform provides advanced analytics,
+      customizable templates, and real-time delivery tracking.
+    </p>
+    <p>
+      <strong>Why we request your data:</strong> We use your email data to help you schedule and monitor email
+      performance. We do not share or sell your information to third parties.
+    </p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <h2>Why Choose EmailPilot?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-clock"></i>
+        <h3>Schedule Emails</h3>
+        <p>Send emails at the perfect time with our advanced scheduling system.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-envelope-open"></i>
+        <h3>Track Performance</h3>
+        <p>Monitor open rates, click rates, and more with detailed analytics.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-file-alt"></i>
+        <h3>Email Templates</h3>
+        <p>Use pre-designed templates to save time and maintain consistency.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Policy Link -->
+  <section class="privacy-section">
+    <h2>Privacy Policy</h2>
+    <p>
+      Your privacy is important to us. Read our
+      <a href="/privacy-policy" target="_blank" class="privacy-link">Privacy Policy</a>
+      to understand how we handle your data.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 EmailPilot. All rights reserved.</p>
+    <p>
+      <a href="/privacy-policy" target="_blank" class="footer-link">Privacy Policy</a> |
+      <a href="/terms-of-service" target="_blank" class="footer-link">Terms of Service</a>
+    </p>
+  </footer>
+</div>

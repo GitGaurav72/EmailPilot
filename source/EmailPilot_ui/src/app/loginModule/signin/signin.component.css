@@ -72,3 +72,30 @@
     flex: 1; /* Each form group takes equal width */
   }
   
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .checkbox-group label {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .checkbox-group a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  
+  .checkbox-group a:hover {
+    text-decoration: underline;
+  }
+  
